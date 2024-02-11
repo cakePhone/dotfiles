@@ -1,0 +1,101 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "SauceCodeProNerdFontMono-Regular", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: white;
+}
+
+window#waybar > button {
+  padding: 0 5px;
+}
+
+widget label,
+widget box#tray {
+  padding: 0 8px;
+  padding-bottom: 0;
+  border-radius: 20px;
+  background-color: @borders;
+}
+
+tooltip {
+  padding: 8px;
+  
+  background-color: @theme_base_color;
+  border: 1px solid @borders;
+  border-radius: 10px;
+}
+
+tooltip label {
+  padding-top: 4px;
+  padding-bottom: 2px;
+}
+
+#battery {
+  padding-right: 18px;
+}
+
+#network {
+  padding-right: 16px;
+}
+
+#pulseaudio {
+  padding-right: 14px;
+}
+
+#backlight {
+  padding-top: 2px;
+  padding-right: 10px; 
+}
+
+#clock {
+  padding-top: 3px;
+  padding-bottom: 0px;
+}
+
+#window {
+  min-width: 20px;
+
+  padding-top: 3px;
+  padding-bottom: 0px;
+}
+
+#workspaces.horizontal button {
+  padding: 0 3px;
+  background-color: @borders;
+  border-radius: 20px;
+  margin: 12px 0;
+  transition-property: padding, background-color;
+  transition-duration: .2s;
+}
+
+#workspaces button.active {
+  padding: 0 10px; 
+  background-color: #cba6f7;
+  border-radius: 20px;
+}
+
+#workspaces.horizontal button:not(:last-child) {
+  margin-right: 6px;
+}
+
+#workspaces.horizontal box label {
+  background-color: transparent;
+}
+
+box.horizontal.modules-right,
+box.horizontal.modules-left,
+box.horizontal.modules-center {
+  background-color: @theme_base_color;
+  border-radius: 60px;
+  padding: 8px;
+}
+
+box.horizontal.modules-center {
+  padding: 0 14px;
+}
