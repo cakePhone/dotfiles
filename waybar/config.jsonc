@@ -93,8 +93,8 @@
         "on-click": "pavucontrol"
     },
     "custom/wlogout": {
-      "format": ""
-      "exec": "wlogout"
+      "format": "",
+      "on-click": "wlogout"
     }
 }
 
