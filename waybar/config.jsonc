@@ -10,7 +10,7 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/mode", "hyprland/window"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "network", "backlight", "hyprland/language", "battery", "clock", "custom/wlogout"],
+    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "network", "backlight", "battery", "clock", "custom/wlogout"],
     // Modules configuration
     "hyprland/workspaces": {
        "disable-scroll": true,
