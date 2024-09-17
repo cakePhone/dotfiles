@@ -34,10 +34,10 @@ run() {
         file_extension=$(echo "$file_extension" | tr '[:upper:]' '[:lower:]')
 
         if [[ " ${PICTURE_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
-            echo "It's a Picture: $file"
+            echo "Picture: $file moved to $PICTURES_DIR"
             mv "$DOWNLOAD_DIR/$file" "$PICTURES_DIR/"
         elif [[ " ${DOCUMENT_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
-            echo "It's a Document: $file"
+            echo "Document: $file moved to $DOCUMENTS_DIR"
             mv "$DOWNLOAD_DIR/$file" "$DOCUMENTS_DIR/"
         else
             echo "Unknown file type: $file"
