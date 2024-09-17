@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 handle_error() {
     local origin="$1"
