@@ -1,25 +1,41 @@
-!/bin/bash
+#!/bin/bash
 
 DOWNLOAD_DIR=~/Downloads
 PICTURES_DIR=~/Pictures
 DOCUMENTS_DIR=~/Documents
 
-PICTURE_EXTENSIONS=("png", "jpg", "jpeg", "svg", "avi")
-DOCUMENT_EXTENSIONS=("txt", "docx", "md", "xls")
+PICTURE_EXTENSIONS=(
+    "jpg" "jpeg" "png" "gif" "bmp" "tiff" "tif" "webp"
+    "svg" "eps" "raw" "cr2" "nef" "orf" "sr2"
+    "heic" "heif" "avif"
+    "psd" "ai" "indd"
+    "ico" "icns"
+    "avi" "mp4" "mov" "wmv" "flv" "webm" "mkv" "m4v"
+)
 
-inotifywait -m -e create "$DOWNLOAD_DIR" | while read -r path action file; do
-    file_extension=$(basename "$filename" | cut -d. -f2-)
-    echo "$extension"
+DOCUMENT_EXTENSIONS=(
+    "txt" "rtf" "doc" "docx" "odt" "pages"
+    "pdf" "xps" "oxps"
+    "xls" "xlsx" "ods" "numbers"
+    "ppt" "pptx" "odp" "key"
+    "csv" "tsv"
+    "md" "markdown"
+    "tex" "bib"
+    "epub" "mobi" "azw" "azw3"
+    "html" "htm" "xml" "json" "yaml" "yml"
+    "log" "ini" "cfg" "conf"
 
-    for extension in "${PICTURE_EXTENSIONS[@]}"; do
-        if [["$extension" == "$file_extension"]]; then
-            echo "It's a Picture"
-        fi
-    done
+inotifywait -m -e create "$DOWNLOAD_DIR" | while read -r directory action file; do
+    file_extension="${file##*.}"
+    file_extension=$(echo "$file_extension" | tr '[:upper:]' '[:lower:]')
 
-    for extension in "${DOCUMENT_EXTENSIONS[@]}"; do
-        if [["$extension" == "$file_extension"]]; then
-            echo "It's a Documents"
-        fi
-    done
+    if [[ " ${PICTURE_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
+        echo "It's a Picture: $file"
+        mv "$DOWNLOAD_DIR/$file" "$PICTURES_DIR/"
+    elif [[ " ${DOCUMENT_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
+        echo "It's a Document: $file"
+        mv "$DOWNLOAD_DIR/$file" "$DOCUMENTS_DIR/"
+    else
+        echo "Unknown file type: $file"
+    fi
 done
