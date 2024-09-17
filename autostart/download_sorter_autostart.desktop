@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Silent Login Script
+Exec=/bin/bash -c "~/.config/automation/download_sorter.sh &"
+X-GNOME-Autostart-enabled=true
+NoDisplay=true
