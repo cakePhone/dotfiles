@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./error_handler.sh
+
 DOWNLOAD_DIR=~/Downloads
 PICTURES_DIR=~/Pictures
 DOCUMENTS_DIR=~/Documents
@@ -24,18 +26,23 @@ DOCUMENT_EXTENSIONS=(
     "epub" "mobi" "azw" "azw3"
     "html" "htm" "xml" "json" "yaml" "yml"
     "log" "ini" "cfg" "conf"
+)
 
-inotifywait -m -e create "$DOWNLOAD_DIR" | while read -r directory action file; do
-    file_extension="${file##*.}"
-    file_extension=$(echo "$file_extension" | tr '[:upper:]' '[:lower:]')
+run() {
+    inotifywait -m -e create "$DOWNLOAD_DIR" | while read -r directory action file; do
+        file_extension="${file##*.}"
+        file_extension=$(echo "$file_extension" | tr '[:upper:]' '[:lower:]')
 
-    if [[ " ${PICTURE_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
-        echo "It's a Picture: $file"
-        mv "$DOWNLOAD_DIR/$file" "$PICTURES_DIR/"
-    elif [[ " ${DOCUMENT_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
-        echo "It's a Document: $file"
-        mv "$DOWNLOAD_DIR/$file" "$DOCUMENTS_DIR/"
-    else
-        echo "Unknown file type: $file"
-    fi
-done
+        if [[ " ${PICTURE_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
+            echo "It's a Picture: $file"
+            mv "$DOWNLOAD_DIR/$file" "$PICTURES_DIR/"
+        elif [[ " ${DOCUMENT_EXTENSIONS[*]} " =~ " $file_extension " ]]; then
+            echo "It's a Document: $file"
+            mv "$DOWNLOAD_DIR/$file" "$DOCUMENTS_DIR/"
+        else
+            echo "Unknown file type: $file"
+        fi
+    done
+}
+
+run 2>&1 || { output=$(cat); if [ $? -ne 0 ]; then handle_error "download_sorter" "$output"; fi; }
