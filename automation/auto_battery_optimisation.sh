@@ -3,7 +3,7 @@
 source ./error_handler.sh
 
 run() {
-    current_refresh_rate=""
+    current_refresh_rate="$(gnome-randr | grep "*" | awk '{ print $1 }' | cut -d'@' -f2 | cut -d'.' -f1)hz"
 
     while true
     do
