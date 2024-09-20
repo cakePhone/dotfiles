@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./auto_battery_optimization.sh
+./auto_battery_optimisation.sh
 ./download_sorter.sh
