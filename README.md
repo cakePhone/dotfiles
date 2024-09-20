@@ -1,15 +1,13 @@
 # Miguel's dotfiles repo
 
-## Hyprland config
+## Installation
 
-Either copy the provided hyprland.conf into ~/.config/hypr/hyprland.conf or do as follows:
-```conf
-# ~/.config/hypr/hyprland.conf
+To install everything, just do:
 
-source = ~/dotfiles/hypr/hyprland.conf
-```
-
-Or you could just symlink like this:
 ```bash
-ln -s ~/.config/hypr ~/dotfiles/hypr
+chmod +x install.sh && ./install.sh
 ```
+
+It will install all needed packages for the scripts to work, nothing more.
+
+You must be on Fedora for this to work. I'll probably adapt it to other distros if I ever use them.
