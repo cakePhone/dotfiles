@@ -45,4 +45,4 @@ run() {
     done
 }
 
-run 2>&1 || { output=$(cat); if [ $? -ne 0 ]; then handle_error "download_sorter" "$output"; fi; }
+result=$(run) || handle_error "download_sorter.sh" "$result"
