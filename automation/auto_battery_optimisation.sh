@@ -3,7 +3,8 @@
 source ./error_handler.sh
 
 run() {
-    current_refresh_rate="$(gnome-randr | grep "*" | awk '{ print $1 }' | cut -d'@' -f2 | cut -d'.' -f1)hz"
+    GNOME_RANDR=$(which gnome-randr) # YES... I NEED THIS
+    current_refresh_rate="$($GNOME_RANDR | grep "*" | awk '{ print $1 }' | cut -d'@' -f2 | cut -d'.' -f1)hz"
 
     while true
     do
@@ -20,24 +21,39 @@ run() {
             echo "On AC"
             if [ "$current_refresh_rate" = "60hz" ];
             then
-                gnome-randr modify -m 1920x1080@144.420 eDP-1
+                $GNOME_RANDR modify -m 1920x1080@144.420 eDP-1
                 current_refresh_rate="144hz"
             fi
             if [ "$current_power_mode" = "power-saver" ];
             then
                 powerprofilesctl set balanced
+                nvidia-settings -c :0 -a "[gpu:0]/GpuPowerMizerMode=1"
+                nvidia-settings -c :0 -a "AllowExternalGpus=1"
+                nvidia-settings -c :0 -a "[gpu:0]/GPUPowerMizerDefaultMode=1"
+                nvidia-settings -c :0 -a "[gpu:0]/GPUGraphicsClockOffset[3]=100"
+                nvidia-settings -c :0 -a "[gpu:0]/GPUMemoryTransferRateOffset[3]=200"
+
+
+                notify-send "Power Mode Changed" "Set to maximum performance"
             fi
         elif [ "$power_source" = "off-line" ];
         then
             echo "On Battery"
             if [ "$current_refresh_rate" = "144hz" ];
             then
-                gnome-randr modify -m 1920x1080@60.317 eDP-1
+                $GNOME_RANDR modify -m 1920x1080@60.317 eDP-1
                 current_refresh_rate="60hz"
             fi
             if ! [ "$current_power_mode" = "power-saver" ];
             then
-                powerprofilesctl set power-saver
+              powerprofilesctl set power-saver
+              nvidia-settings -c :0 -a "[gpu:0]/GpuPowerMizerMode=0"
+              nvidia-settings -c :0 -a "AllowExternalGpus=0"
+              nvidia-settings -c :0 -a "[gpu:0]/GPUPowerMizerDefaultMode=0"
+              nvidia-settings -c :0 -a "[gpu:0]/GPUGraphicsClockOffset[3]=0"
+              nvidia-settings -c :0 -a "[gpu:0]/GPUMemoryTransferRateOffset[3]=0"
+
+              notify-send "Power Mode Changed" "Set to power saver"
             fi
         else
             echo "What the fuck bro, how's this running?"
