@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=Silent Login Script
-Exec=/bin/bash -c "~/.config/automation/starter.sh &"
+Exec=/bin/bash -l -c "$HOME/.config/automation/starter.sh &"
 X-GNOME-Autostart-enabled=true
 NoDisplay=true
