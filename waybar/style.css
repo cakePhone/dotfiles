@@ -36,6 +36,10 @@ tooltip label {
   padding-bottom: 2px;
 }
 
+#idle_inhibitor {
+  padding-right: 14px;
+}
+
 #battery {
   padding-right: 10px;
 }
@@ -49,13 +53,16 @@ tooltip label {
 }
 
 #backlight {
-  padding-top: 2px;
-  padding-right: 10px;
+  padding-right: 9px;
 }
 
 #clock {
   padding-top: 3px;
   padding-bottom: 0px;
+}
+
+#custom-wlogout {
+  padding-right: 11px;
 }
 
 #window {
@@ -76,6 +83,7 @@ tooltip label {
 
 #workspaces button.active {
   padding: 0 10px;
+  color: #000000;
   background-color: #cba6f7;
   border-radius: 20px;
 }
