@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "SauceCodeProNerdFontMono-Regular", Helvetica, Arial, sans-serif;
+  font-family: "JetBrainsMonoNerdFont", Helvetica, Arial, sans-serif;
   font-size: 11px;
   min-height: 0;
 }
@@ -25,7 +25,7 @@ widget box#tray {
 
 tooltip {
   padding: 8px;
-  
+
   background-color: @theme_base_color;
   border: 1px solid @borders;
   border-radius: 10px;
@@ -37,7 +37,7 @@ tooltip label {
 }
 
 #battery {
-  padding-right: 18px;
+  padding-right: 10px;
 }
 
 #network {
@@ -50,7 +50,7 @@ tooltip label {
 
 #backlight {
   padding-top: 2px;
-  padding-right: 10px; 
+  padding-right: 10px;
 }
 
 #clock {
@@ -71,11 +71,11 @@ tooltip label {
   border-radius: 20px;
   margin: 12px 0;
   transition-property: padding, background-color;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
 #workspaces button.active {
-  padding: 0 10px; 
+  padding: 0 10px;
   background-color: #cba6f7;
   border-radius: 20px;
 }
@@ -94,6 +94,10 @@ box.horizontal.modules-center {
   background-color: @theme_base_color;
   border-radius: 60px;
   padding: 8px;
+}
+
+box.horizontal.modules-left {
+  padding: 5px 8px 8px 8px;
 }
 
 box.horizontal.modules-center {
