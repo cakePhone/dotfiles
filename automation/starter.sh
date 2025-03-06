@@ -1,4 +1,5 @@
 #!/bin/bash
+exit
 
 notify-send "Running scripts" "Check ~/autostart_log.txt for logs" -a "Starter"
 
