@@ -2,8 +2,8 @@
   border: none;
   border-radius: 0;
   font-family: "JetBrainsMonoNerdFont", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  min-height: 0;
+  font-size: 12px;
+  min-height: 0px;
 }
 
 window#waybar {
@@ -11,15 +11,10 @@ window#waybar {
   color: white;
 }
 
-window#waybar > button {
-  padding: 0 5px;
-}
-
 widget label,
 widget box#tray {
-  padding: 0 8px;
-  padding-bottom: 0;
-  border-radius: 20px;
+  min-height: 20px;
+  padding: 0;
   background-color: @borders;
 }
 
@@ -36,56 +31,27 @@ tooltip label {
   padding-bottom: 2px;
 }
 
-#idle_inhibitor {
-  padding-right: 14px;
-}
-
-#battery {
-  padding-right: 10px;
-}
-
-#network {
-  padding-right: 16px;
-}
-
-#pulseaudio {
-  padding-right: 14px;
-}
-
-#backlight {
-  padding-right: 9px;
-}
-
-#clock {
-  padding-top: 3px;
-  padding-bottom: 0px;
-}
-
-#custom-wlogout {
-  padding-right: 11px;
+module {
+  border-radius: 7px
 }
 
 #window {
   min-width: 20px;
-
-  padding-top: 3px;
-  padding-bottom: 0px;
 }
 
 #workspaces.horizontal button {
-  padding: 0 3px;
+  padding: 0;
+  min-width: 30px;
   background-color: @borders;
-  border-radius: 20px;
-  margin: 12px 0;
-  transition-property: padding, background-color;
+  border-radius: 7px;
+  transition-property: min-width, background-color;
   transition-duration: 0.2s;
 }
 
 #workspaces button.active {
-  padding: 0 10px;
+  min-width: 40px;
   color: #000000;
   background-color: #cba6f7;
-  border-radius: 20px;
 }
 
 #workspaces.horizontal button:not(:last-child) {
@@ -97,17 +63,96 @@ tooltip label {
 }
 
 box.horizontal.modules-right,
-box.horizontal.modules-left,
-box.horizontal.modules-center {
+box.horizontal.modules-left {
   background-color: @theme_base_color;
-  border-radius: 60px;
+  border-radius: 15px;
   padding: 8px;
 }
 
-box.horizontal.modules-left {
-  padding: 5px 8px 8px 8px;
+box.horizontal.modules-right label,
+box.horizontal.modules-left label {
+  border-radius: 7px;
+  padding: 0 6px;
 }
 
-box.horizontal.modules-center {
-  padding: 0 14px;
+box.horizontal.modules-left label {
+  min-width: 10px;
+}
+
+#tray {
+  border-radius: 7px;
+}
+
+#tray>widget>image {
+  min-width: 24px;
+}
+
+#tray window {
+  min-height: 0px;
+  min-width: 0px;
+  border-radius: 15px;
+}
+
+#tray separator {
+  padding: 0;
+  margin: 0;
+  min-height: 0px;
+  min-width: 0px;
+  border-radius: 15px;
+}
+
+#tray menu,
+#tray decoration {
+  min-width: 0px;
+  border-radius: 15px;
+  margin: 0;
+}
+
+#tray menu,
+#tray menu>* {
+  padding: 2px 0;
+  min-width: 100px;
+  margin: 3px 0;
+}
+
+#tray menu menuItem {
+  padding: 0;
+}
+
+#tray menu label {
+  padding: 0 6px;
+  min-width: 40px;
+  margin: 0;
+  background-color: @theme_background_color;
+}
+
+#idle_inhibitor {
+  padding-right: 14px;
+}
+
+#battery {
+  min-width: 40px;
+  padding-right: 12px;
+}
+
+#network {}
+
+#pulseaudio {
+  min-width: 40px;
+  padding-right: 12px;
+}
+
+#backlight {
+  min-width: 10px;
+}
+
+#clock {}
+
+#custom-waybar-mpris {
+  min-width: 100px;
+  padding-right: 12px;
+}
+
+#custom-wlogout {
+  padding-right: 10px;
 }

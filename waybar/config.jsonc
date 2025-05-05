@@ -8,10 +8,13 @@
   // "width": 1280, // Waybar width
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["hyprland/mode", "hyprland/window"],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window",
+  ],
   "modules-right": [
     "tray",
+    "mpris",
     "idle_inhibitor",
     "pulseaudio",
     "backlight",
@@ -20,6 +23,25 @@
     "custom/wlogout",
   ],
   // Modules configuration
+  "mpris": {
+    "interval": 1,
+    "format": "{length} {status_icon}  {artist} - {title}",
+    "ignored-players": [
+      "firefox",
+      "zen-browser"
+    ],
+    "status-icons": {
+      "playing": "",
+      "paused": "",
+      "stopped": "",
+    },
+    "artist-len": 20,
+    "title-len": 40,
+    "on-click": "playerctl play-pause",
+  },
+  "hyprland/window": {
+    "format": "{title}",
+  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -42,8 +64,8 @@
     },
   },
   "tray": {
-    // "icon-size": 21,
-    "spacing": 10,
+    "icon-size": 14,
+    "spacing": 0,
   },
   "clock": {
     // "timezone": "America/New_York",
@@ -55,7 +77,17 @@
     "scroll-step": 10,
     "format": "{icon}",
     "tooltip": false,
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
   },
   "battery": {
     "states": {
@@ -68,8 +100,15 @@
     "format-plugged": "{capacity}% ",
     "format-alt": "{time} {icon}",
     // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": ["", "", "", "", ""],
+    "format-full": "",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "on-click": "~/.config/waybar/profiles.sh",
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -95,7 +134,11 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""],
+      "default": [
+        "",
+        "",
+        ""
+      ],
     },
     "on-click": "pavucontrol",
   },

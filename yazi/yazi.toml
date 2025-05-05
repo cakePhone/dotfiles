@@ -1,0 +1,7 @@
+[open]
+rules = [
+  {mime = "text/*", use = "edit"}
+]
+
+[opener]
+edit = [{ run = '~/.local/bin/lvim "$@"', block = true, for = "unix" }]
