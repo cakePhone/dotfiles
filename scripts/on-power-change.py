@@ -5,7 +5,7 @@ from gi.repository import GLib
 import subprocess
 
 # Path to your script
-SCRIPT_TO_RUN = "/home/oreo/.config/waybar/profiles.sh"
+SCRIPT_TO_RUN = "/home/oreo/.config/scripts/profiles.sh"
 
 
 def on_properties_changed(interface, changed, invalidated):
@@ -16,7 +16,6 @@ def on_properties_changed(interface, changed, invalidated):
 def main():
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     bus = dbus.SystemBus()
-    upower = bus.get_object("org.freedesktop.UPower", "/org/freedesktop/UPower")
     bus.add_signal_receiver(
         on_properties_changed,
         dbus_interface="org.freedesktop.DBus.Properties",
