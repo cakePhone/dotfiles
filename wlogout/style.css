@@ -1,26 +1,30 @@
 * {
-	background-image: none;
+  background-image: none;
   outline: none;
 }
 
 window {
-	background-color: rgba(30, 30, 46, 0.9);
+  background-color: rgba(30, 30, 46, 0.9);
 }
 
 button {
-  color: #cdd6f4;
-	background-color: #313244;
+  color: rgb(205, 214, 244);
+  background-color: rgb(30, 30, 46);
 
-	border-style: solid;
-	border-width: 10px;
+  border-style: solid;
+  border-width: 2px;
   border-radius: 50px;
-  border-color: @theme_base_color;
+  border-color: rgb(203, 166, 247);
 
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 25%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
 
-  margin: 10px;
+  margin: 200px 10px;
+}
+
+button:hover {
+  background-color: rgb(49, 50, 68);
 }
 
 #lock {
