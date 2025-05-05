@@ -1,5 +1,7 @@
 # Miguel's dotfiles repo
 
+[!Showcase](showcase.png)
+
 ## Installation
 
 To install everything, just do:
