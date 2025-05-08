@@ -1,3 +1,5 @@
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="nicoulaj"
