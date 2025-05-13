@@ -5,4 +5,7 @@ return {
   {
     "github/copilot.vim",
   },
+  {
+    "voldikss/vim-floaterm",
+  },
 }
