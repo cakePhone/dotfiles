@@ -1,0 +1,5 @@
+background = #1e1e2e
+background-opacity = 0.8
+adjust-cell-width = 10%
+window-padding-balance = true
+confirm-close-surface = false
