@@ -1,3 +1,3 @@
 killall waybar
 
-waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css
+waybar -c ~/dotfiles/waybar/config.jsonc -s ~/dotfiles/waybar/style.css

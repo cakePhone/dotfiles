@@ -25,9 +25,6 @@ find "$dotfiles_root" -maxdepth 1 -type d -print0 | while IFS= read -r -d $'\0' 
   if [ -d "$config_dir" ]; then
     echo "Removing existing config directory: $config_dir"
     rm -rf "$config_dir"
-  elif [ -L "$config_dir" ]; then
-    echo "Removing existing symlink: $config_dir"
-    rm "$config_dir"
   fi
 
   # Create the symlink
@@ -64,4 +61,3 @@ echo "All done!"
 
 # move .zshrc to home dir
 cp .zshrc ~/.zshrc
-
