@@ -67,6 +67,10 @@ box.horizontal.modules-left {
   background-color: @theme_base_color;
   border-radius: 15px;
   padding: 8px;
+
+  border: 2px solid #cba6f7;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 box.horizontal.modules-right label,

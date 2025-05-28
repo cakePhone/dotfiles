@@ -44,3 +44,4 @@ fi
 
 bindkey -v
 
+source /usr/share/zsh/plugins/zsh-calc/zsh-calc.zsh
