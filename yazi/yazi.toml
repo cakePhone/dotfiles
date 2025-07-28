@@ -4,4 +4,4 @@ rules = [
 ]
 
 [opener]
-edit = [{ run = '~/.local/bin/lvim "$@"', block = true, for = "unix" }]
+edit = [{ run = 'nvim "$@"', block = true, for = "unix" }]
