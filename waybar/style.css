@@ -1,162 +1,166 @@
 * {
-  border: none;
-  border-radius: 0;
-  font-family: "JetBrainsMonoNerdFont", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  min-height: 0px;
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMonoNerdFont", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    min-height: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 window#waybar {
-  background-color: transparent;
-  color: white;
+    background-color: transparent;
+    color: white;
 }
 
 widget label,
 widget box#tray {
-  min-height: 20px;
-  padding: 0;
-  background-color: @borders;
+    min-height: 26px;
+    padding: 0;
+    background-color: @theme_base_color;
 }
 
 tooltip {
-  padding: 8px;
+    padding: 8px;
 
-  background-color: @theme_base_color;
-  border: 1px solid @borders;
-  border-radius: 10px;
+    background-color: @theme_base_color;
+    border: 1px solid @borders;
+    border-radius: 10px;
 }
 
 tooltip label {
-  padding-top: 4px;
-  padding-bottom: 2px;
-}
-
-module {
-  border-radius: 7px
+    padding-top: 4px;
+    padding-bottom: 2px;
 }
 
 #window {
-  min-width: 20px;
+    min-width: 20px;
+}
+
+#window label {
+    padding: 0 12px;
 }
 
 #workspaces.horizontal button {
-  padding: 0;
-  min-width: 30px;
-  background-color: @borders;
-  border-radius: 7px;
-  transition-property: min-width, background-color;
-  transition-duration: 0.2s;
+    min-width: 35px;
+    font-size: 12px;
+    background-color: @theme_base_color;
+    border-radius: 15px;
+    transition-property: min-width, background-color;
+    transition-duration: 0.2s;
+
+}
+
+#workspaces.horizontal button label {
+    padding: 0;
+    margin: 0;
 }
 
 #workspaces button.active {
-  min-width: 40px;
-  color: #000000;
-  background-color: #cba6f7;
+    min-width: 45px;
+    color: #000000;
+    background-color: #cba6f7;
 }
 
 #workspaces.horizontal button:not(:last-child) {
-  margin-right: 6px;
+    margin-right: 6px;
 }
 
 #workspaces.horizontal box label {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 box.horizontal.modules-right,
 box.horizontal.modules-left {
-  background-color: @theme_base_color;
-  border-radius: 15px;
-  padding: 8px;
-
-  border: 2px solid #cba6f7;
-  margin-left: 3px;
-  margin-right: 3px;
+    margin: 0 5px;
 }
 
 box.horizontal.modules-right label,
 box.horizontal.modules-left label {
-  border-radius: 7px;
-  padding: 0 6px;
+    border-radius: 15px;
+    padding: 0 6px;
 }
 
 box.horizontal.modules-left label {
-  min-width: 10px;
+    min-width: 10px;
 }
 
 #tray {
-  border-radius: 7px;
+    border-radius: 15px;
 }
 
 #tray>widget>image {
-  min-width: 24px;
+    min-width: 24px;
 }
 
 #tray window {
-  min-height: 0px;
-  min-width: 0px;
-  border-radius: 15px;
+    min-height: 0px;
+    min-width: 0px;
+    border-radius: 15px;
 }
 
 #tray separator {
-  padding: 0;
-  margin: 0;
-  min-height: 0px;
-  min-width: 0px;
-  border-radius: 15px;
+    padding: 0;
+    margin: 0;
+    min-height: 0px;
+    min-width: 0px;
+    border-radius: 15px;
 }
 
 #tray menu,
 #tray decoration {
-  min-width: 0px;
-  border-radius: 15px;
-  margin: 0;
+    min-width: 0px;
+    border-radius: 15px;
+    margin: 0;
 }
 
 #tray menu,
 #tray menu>* {
-  padding: 2px 0;
-  min-width: 100px;
-  margin: 3px 0;
+    padding: 2px 0;
+    min-width: 100px;
+    margin: 3px 0;
 }
 
 #tray menu menuItem {
-  padding: 0;
+    padding: 0;
 }
 
 #tray menu label {
-  padding: 0 6px;
-  min-width: 40px;
-  margin: 0;
-  background-color: @theme_background_color;
+    padding: 0 6px;
+    min-width: 40px;
+    margin: 0;
+    background-color: @theme_background_color;
 }
 
 #idle_inhibitor {
-  padding-right: 14px;
+    padding-right: 14px;
 }
 
 #battery {
-  min-width: 40px;
-  padding-right: 12px;
+    min-width: 40px;
+    padding-right: 12px;
 }
 
 #network {}
 
 #pulseaudio {
-  min-width: 40px;
-  padding-right: 12px;
+    min-width: 40px;
+    padding-right: 12px;
 }
 
 #backlight {
-  min-width: 10px;
+    min-width: 10px;
 }
 
-#clock {}
+#clock {
+    padding: 0 8px;
+}
 
-#custom-waybar-mpris {
-  min-width: 100px;
-  padding-right: 12px;
+#mpris {
+    min-width: 100px;
+    padding: 0 10px;
 }
 
 #custom-wlogout {
-  padding-right: 10px;
+    padding-right: 10px;
 }

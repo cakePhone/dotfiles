@@ -1,149 +1,149 @@
 {
-  "layer": "top", // Waybar at top layer
-  "margin-top": 2,
-  "margin-left": 2,
-  "margin-right": 2,
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 12, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
-  "spacing": 4, // Gaps between modules (4px)
-  // Choose the order of the modules
-  "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/window",
-  ],
-  "modules-right": [
-    "tray",
-    "mpris",
-    "idle_inhibitor",
-    "pulseaudio",
-    "backlight",
-    "battery",
-    "clock",
-    "custom/wlogout",
-  ],
-  // Modules configuration
-  "mpris": {
-    "interval": 1,
-    "format": "{length} {status_icon}  {artist} - {title}",
-    "ignored-players": [
-      "firefox",
-      "zen-browser"
+    "layer": "top", // Waybar at top layer
+    "margin-top": 2,
+    "margin-left": 2,
+    "margin-right": 2,
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 12, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
     ],
-    "status-icons": {
-      "playing": "",
-      "paused": "",
-      "stopped": "",
-    },
-    "artist-len": 20,
-    "title-len": 40,
-    "on-click": "playerctl play-pause",
-  },
-  "hyprland/window": {
-    "format": "{title}",
-  },
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
-    "warp-on-scroll": false,
-  },
-  "keyboard-state": {
-    "numlock": true,
-    "capslock": true,
-    "format": "{name} {icon}",
-    "format-icons": {
-      "locked": "",
-      "unlocked": "",
-    },
-  },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": "",
-    },
-  },
-  "tray": {
-    "icon-size": 14,
-    "spacing": 0,
-  },
-  "clock": {
-    // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}",
-  },
-  "backlight": {
-    // "device": "acpi_video1",
-    "scroll-step": 10,
-    "format": "{icon}",
-    "tooltip": false,
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
+    "modules-right": [
+        "mpris",
+        "tray",
+        "idle_inhibitor",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "clock",
+        "custom/wlogout",
     ],
-  },
-  "battery": {
-    "states": {
-      // "good": 95,
-      "warning": 30,
-      "critical": 15,
+    // Modules configuration
+    "mpris": {
+        "interval": 1,
+        "format": "{length} {status_icon}  {artist} - {title}",
+        "ignored-players": [
+            "firefox",
+            "zen-browser"
+        ],
+        "status-icons": {
+            "playing": "",
+            "paused": "",
+            "stopped": "",
+        },
+        "artist-len": 20,
+        "title-len": 40,
+        "on-click": "playerctl play-pause",
     },
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
-    // "format-good": "", // An empty format will hide the module
-    "format-full": "",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "on-click": "~/.config/waybar/profiles.sh",
-  },
-  "network": {
-    // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "tooltip-format": "{ifname} via {gwaddr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}",
-  },
-  "pulseaudio": {
-    "scroll-step": 10, // %, can be a float
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ],
+    "hyprland/window": {
+        "format": "{title}",
     },
-    "on-click": "pavucontrol",
-  },
-  "custom/wlogout": {
-    "format": "",
-    "on-click": "wlogout",
-  },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": "",
+        },
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "",
+        },
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 0,
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}",
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "scroll-step": 10,
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15,
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        "format-full": "",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "on-click": "~/.config/waybar/profiles.sh",
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    },
+    "pulseaudio": {
+        "scroll-step": 10, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ],
+        },
+        "on-click": "pavucontrol",
+    },
+    "custom/wlogout": {
+        "format": "",
+        "on-click": "wlogout",
+    },
 }
