@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <program> [args...]"
+  exit 1
+fi
+
+PROGRAM="$1"
+shift
+
+hyprctl dispatch exec "$PROGRAM $*" &
+PID=$!
+
+sleep 0.1
+
+WINDOW_ID=$(hyprctl clients -j | jq -r ".[] | select(.pid == $PID) | .address")
+
+if [ -n "$WINDOW_ID" ] && [ "$WINDOW_ID" != "null" ]; then
+  hyprctl dispatch moveactive "$WINDOW_ID" exact center
+  hyprctl dispatch togglefloating "$WINDOW_ID"
+fi

@@ -1,0 +1,10 @@
+@import "catppuccin.rasi"
+
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus";
+    font: "JetBrainsMono Nerd Font 14";
+    terminal: "ghostty";
+    drun-display-format: "{name}";
+    window-format: "{class} - {title}";
+}

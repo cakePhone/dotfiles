@@ -1,166 +1,107 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMonoNerdFont", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    min-height: 0px;
-    padding: 0;
-    margin: 0;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+
+  border: none;
+  border-radius: 0;
+  min-width: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 12px;
 }
 
 window#waybar {
-    background-color: transparent;
-    color: white;
+  padding: 0;
 }
 
-widget label,
-widget box#tray {
-    min-height: 26px;
-    padding: 0;
-    background-color: @theme_base_color;
+.modules-left {
+  margin-top: 0;
 }
 
-tooltip {
-    padding: 8px;
-
-    background-color: @theme_base_color;
-    border: 1px solid @borders;
-    border-radius: 10px;
+.modules-right {
+  margin-bottom: 0;
+  margin-left: -6px;
 }
 
-tooltip label {
-    padding-top: 4px;
-    padding-bottom: 2px;
+#workspaces button {
+  all: initial;
+  padding: 6px 0;
+  margin: 1.5px 0;
+  min-height: 9px;
 }
 
-#window {
-    min-width: 20px;
+#workspaces button.empty {
+  opacity: 0.5;
 }
 
-#window label {
-    padding: 0 12px;
-}
-
-#workspaces.horizontal button {
-    min-width: 35px;
-    font-size: 12px;
-    background-color: @theme_base_color;
-    border-radius: 15px;
-    transition-property: min-width, background-color;
-    transition-duration: 0.2s;
-
-}
-
-#workspaces.horizontal button label {
-    padding: 0;
-    margin: 0;
-}
-
-#workspaces button.active {
-    min-width: 45px;
-    color: #000000;
-    background-color: #cba6f7;
-}
-
-#workspaces.horizontal button:not(:last-child) {
-    margin-right: 6px;
-}
-
-#workspaces.horizontal box label {
-    background-color: transparent;
-}
-
-box.horizontal.modules-right,
-box.horizontal.modules-left {
-    margin: 0 5px;
-}
-
-box.horizontal.modules-right label,
-box.horizontal.modules-left label {
-    border-radius: 15px;
-    padding: 0 6px;
-}
-
-box.horizontal.modules-left label {
-    min-width: 10px;
+#cpu,
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-height: 12px;
+  margin: 7.5px 0;
 }
 
 #tray {
-    border-radius: 15px;
+  margin-bottom: 16px;
+  margin-left: 4px;
 }
 
-#tray>widget>image {
-    min-width: 24px;
+#custom-expand-icon {
+  margin-bottom: 18px;
+  margin-left: 4px;
 }
 
-#tray window {
-    min-height: 0px;
-    min-width: 0px;
-    border-radius: 15px;
+#bluetooth {
+  margin-bottom: 17px;
+  margin-left: 1px;
 }
 
-#tray separator {
-    padding: 0;
-    margin: 0;
-    min-height: 0px;
-    min-width: 0px;
-    border-radius: 15px;
+#network {
+  margin-bottom: 13px;
 }
-
-#tray menu,
-#tray decoration {
-    min-width: 0px;
-    border-radius: 15px;
-    margin: 0;
-}
-
-#tray menu,
-#tray menu>* {
-    padding: 2px 0;
-    min-width: 100px;
-    margin: 3px 0;
-}
-
-#tray menu menuItem {
-    padding: 0;
-}
-
-#tray menu label {
-    padding: 0 6px;
-    min-width: 40px;
-    margin: 0;
-    background-color: @theme_background_color;
-}
-
-#idle_inhibitor {
-    padding-right: 14px;
-}
-
-#battery {
-    min-width: 40px;
-    padding-right: 12px;
-}
-
-#network {}
 
 #pulseaudio {
-    min-width: 40px;
-    padding-right: 12px;
+  margin-left: -1px;
 }
 
-#backlight {
-    min-width: 10px;
+#custom-expand-icon {
+  margin-bottom: 18px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
 }
 
 #clock {
-    padding: 0 8px;
+  margin-top: 8.75px;
 }
 
-#mpris {
-    min-width: 100px;
-    padding: 0 10px;
+.hidden {
+  opacity: 0;
 }
 
-#custom-wlogout {
-    padding-right: 10px;
+#custom-screenrecording-indicator {
+  min-height: 12px;
+  margin-top: 5px;
+  font-size: 10px;
+  padding-bottom: 1px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
+#custom-voxtype {
+  min-height: 12px;
+  margin: 7.5px 0 0 0;
+}
+
+#custom-voxtype.recording {
+  color: #a55555;
 }

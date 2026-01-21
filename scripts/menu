@@ -1,0 +1,8 @@
+#!/bin/bash
+
+TIMEZONE=$(timedatectl list-timezones | wofi --dmenu --prompt "Select Timezone")
+
+if [ -n "$TIMEZONE" ]; then
+    timedatectl set-timezone "$TIMEZONE"
+    notify-send "Timezone set to $TIMEZONE"
+fi

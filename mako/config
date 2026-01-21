@@ -1,0 +1,33 @@
+# Catppuccin Mocha theme for Mako
+# Background colors
+background-color=#1e1e2e
+text-color=#cdd6f4
+
+# Border
+border-color=#cba6f7
+
+# Dimensions
+width=400
+margin=0
+
+# Anchor
+anchor=bottom-left
+padding=10
+border-radius=0
+border-size=1
+
+# Fonts
+font=JetBrainsMono Nerd Font 12
+
+# Icons
+icon-path=/usr/share/pixmaps
+
+# Behavior
+max-visible=5
+group-by=app-name
+default-timeout=5000
+on-button-left=invoke-default-action
+
+
+
+

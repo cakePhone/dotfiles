@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <program>"
+  exit 1
+fi
+
+PROGRAM="$1"
+
+CLASS=$(hyprctl clients -j 2>/dev/null | jq -r ".[] | select(.class | test(\"$PROGRAM\"; \"i\")) | .class" | head -1)
+
+if [ -n "$CLASS" ] && [ "$CLASS" != "null" ]; then
+  hyprctl dispatch focuswindow "class:$CLASS"
+else
+  hyprctl dispatch exec "$PROGRAM"
+fi

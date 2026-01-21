@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if pgrep -x "waybar" > /dev/null; then
+  killall waybar
+else
+  waybar -c ~/dotfiles/waybar/config.jsonc -s ~/dotfiles/waybar/style.css
+fi

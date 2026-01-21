@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ACTION=$(echo -e "Logout\nShutdown\nReboot\nSuspend\nLock" | wofi --dmenu --prompt "Power")
+
+case "$ACTION" in
+    Logout)
+        hyprctl dispatch exit
+        ;;
+    Shutdown)
+        systemctl poweroff
+        ;;
+    Reboot)
+        systemctl reboot
+        ;;
+    Suspend)
+        systemctl suspend
+        ;;
+    Lock)
+        hyprlock
+        ;;
+esac
