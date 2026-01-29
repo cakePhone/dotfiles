@@ -12,4 +12,4 @@ chmod +x install.sh && ./install.sh
 
 It will install all needed packages for the scripts to work, nothing more.
 
-You must be on Fedora for this to work. I'll probably adapt it to other distros if I ever use them.
+You must be on an Arch-based distribution for this configuration to work. I may adapt it to other distros later.
