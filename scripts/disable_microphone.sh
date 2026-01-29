@@ -1,6 +1,17 @@
 #!/bin/bash
 
-# Replace with the actual index or name of your input device
-INPUT_DEVICE_ID="alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic2__source"  # Or use the index (e.g., 1)
+#!/usr/bin/env bash
+# Disable the default input source if it exists; safe to run at startup.
+set -euo pipefail
 
-pactl set-source-mute "$INPUT_DEVICE_ID" true
+# Prefer the default source name; fallback to first available if not found
+DEFAULT_SOURCE=$(pactl info 2>/dev/null | awk -F": " '/Default Source:/ {print $2}') || true
+if [ -n "$DEFAULT_SOURCE" ]; then
+  pactl set-source-mute "$DEFAULT_SOURCE" true || true
+else
+  # Try to mute the first input source returned by pactl
+  FIRST_SRC=$(pactl list short sources | awk '{print $2}' | head -n1) || true
+  if [ -n "$FIRST_SRC" ]; then
+    pactl set-source-mute "$FIRST_SRC" true || true
+  fi
+fi

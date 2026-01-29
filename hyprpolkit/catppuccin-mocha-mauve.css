@@ -1,0 +1,107 @@
+/* Catppuccin - Mocha (mauve accent)
+   Apply by linking to ~/.config/gtk-3.0/gtk.css and/or ~/.config/gtk-4.0/gtk.css
+*/
+
+/* Palette (mocha) */
+/* Base / background */
+@define-color cp-base #1e1e2e;
+@define-color cp-mantle #181825;
+@define-color cp-crust #11111b;
+
+/* Text */
+@define-color cp-text #cdd6f4;
+@define-color cp-subtle #a6adc8;
+
+/* Accent (mauve) */
+@define-color cp-accent #cba6f7;
+@define-color cp-accent-strong #a084e8;
+
+/* Support */
+@define-color cp-surface0 #313244;
+@define-color cp-surface1 #45475a;
+
+/* Root window / dialogs */
+window, dialog, .window, .dialog {
+  background-color: @cp-base;
+  color: @cp-text;
+}
+
+/* Headerbars */
+headerbar, .header-bar, .titlebar {
+  background-color: @cp-mantle;
+  color: @cp-text;
+}
+
+/* Buttons */
+button, .button {
+  background-image: none;
+  background-color: @cp-surface1;
+  color: @cp-text;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+/* Accent buttons (primary actions) */
+button.primary, .suggested-action, .flat, .action { /* common primary classes */
+  background-color: @cp-accent;
+  color: @cp-crust;
+  font-weight: 600;
+}
+
+/* Button hover/focus */
+button:hover, button:active, button:focus {
+  background-color: @cp-accent-strong;
+}
+
+/* Entry fields */
+entry, textview, textarea, .entry {
+  background-color: @cp-surface0;
+  color: @cp-text;
+  border: 1px solid shade(@cp-surface1, 1.1);
+  border-radius: 6px;
+}
+
+/* Checkboxes / switches */
+switch, .switch, checkbutton, .check {
+  color: @cp-text;
+}
+switch slider, .switch slider {
+  background-color: @cp-surface1;
+}
+switch:checked slider, .switch:checked slider {
+  background-color: @cp-accent;
+}
+
+/* Links */
+a, link, .link {
+  color: @cp-accent;
+}
+
+/* Progressbar */
+progress, .progress, progressbar {
+  background-color: @cp-surface0;
+  color: @cp-text;
+}
+progress chunk, progressbar trough, .progress .chunk {
+  background-color: @cp-accent;
+}
+
+/* Dialog-specific tweaks */
+.polkit-dialog, .authentication-dialog, dialog.authentication, dialog#polkit {
+  background-color: @cp-base;
+  color: @cp-text;
+}
+
+/* Make focus outlines visible but understated */
+*:focus {
+  outline-color: mix(@cp-accent, @cp-base, 30%);
+  outline-style: solid;
+  outline-width: 2px;
+}
+
+/* Small touchups for dark surfaces */
+.content, .dialog .content {
+  background-color: transparent;
+}
+
+/* End of styling */

@@ -15,7 +15,7 @@ resize_in_steps no
 tab_bar_edge bottom
 tab_bar_style powerline
 tab_powerline_style slanted
-font_family JetBrains Nerd Font
+font_family FiraCode Nerd Font
 bold_font auto
 italic_font auto
 bold_italic_font auto
@@ -49,9 +49,3 @@ editor .
 close_on_child_death no
 allow_hyperlinks yes
 term xterm-256color
-
-
-# BEGIN_KITTY_THEME
-# Catppuccin-Mocha
-include current-theme.conf
-# END_KITTY_THEME

@@ -13,7 +13,10 @@ POWER_PLUG_SOUND="power-plug"
 # Function to set monitor refresh rate
 set_monitor_rate() {
     local refresh_rate=$1
-    hyprctl keyword monitor "$MONITOR_ID,$MONITOR_RES@${refresh_rate},auto,1"
+    # Only attempt to set monitor if hyprctl is available
+    if command -v hyprctl >/dev/null 2>&1; then
+        hyprctl keyword monitor "$MONITOR_ID,$MONITOR_RES@${refresh_rate},auto,1"
+    fi
 }
 
 # Function to set tuned profile and refresh rate
@@ -28,9 +31,17 @@ set_profile() {
 
 # Toggle between powersave and performance mode
 toggle_mode() {
-    local current_profile=$(tlp-stat --mode)
+    # Use powerprofilesctl (more modern) when available; fallback to tlp-stat
+    local current_profile
+    if command -v powerprofilesctl >/dev/null 2>&1; then
+        current_profile=$(powerprofilesctl get)
+    elif command -v tlp-stat >/dev/null 2>&1; then
+        current_profile=$(tlp-stat --mode)
+    else
+        current_profile="unknown"
+    fi
 
-    if [ "$current_profile" = "battery" ]; then
+    if [ "$current_profile" = "battery" ] || [ "$current_profile" = "power-saver" ]; then
         set_profile \
             "$POWER_SAVE_PROFILE" \
             "$POWER_SAVE_HZ" \
