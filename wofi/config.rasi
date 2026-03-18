@@ -85,6 +85,7 @@ element-icon {
 }
 window {
     height: 590px;
+    width: 500px;
     padding:          10px;
     background-color: @background;
 }
@@ -166,4 +167,7 @@ prompt {
 configuration {
     show-icons: true;
     show-window-header: false;
+
+    drun-match-fields: "name";
+    matching: "normal";
   }
