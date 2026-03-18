@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Arch installer: installs Hyprland + theme tooling and Catppuccin themes
+# Arch installer: installs Niri + theme tooling and Catppuccin themes
 # Assumes a user with sudo privileges and that 'yay' is available (will install if missing).
 set -euo pipefail
 
@@ -15,9 +15,9 @@ if ! command -v yay >/dev/null 2>&1; then
   rm -rf "$tmpdir"
 fi
 
-echo "[install_arch] Installing Hyprland and utilities (official + AUR where needed)..."
+echo "[install_arch] Installing Niri and utilities (official + AUR where needed)..."
 # core packages (official repos where possible)
-sudo pacman -S --needed --noconfirm hyprland hyprpaper hyprpicker hypridle hyprlock hyprshot waybar-hyprland wlogout swaync fastfetch yazi btop ghostty zsh qt6ct
+sudo pacman -S --needed --noconfirm niri swaybg swayidle swaylock grim slurp wl-clipboard waybar wlogout swaync fastfetch yazi btop ghostty zsh qt6ct
 
 # AUR packages via yay (nwg-look and user theme packages)
 yay -S --noconfirm zen-browser-bin nwg-look
