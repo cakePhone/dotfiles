@@ -33,6 +33,38 @@ window#waybar {
   opacity: 0.5;
 }
 
+#taskbar,
+#custom-niri-taskbar {
+  margin-top: 6px;
+}
+
+#taskbar button,
+#custom-niri-taskbar {
+  all: initial;
+  padding: 5px 0;
+  margin: 1.5px 0;
+  min-height: 12px;
+  color: #cdd6f4;
+  opacity: 0.7;
+}
+
+#custom-niri-taskbar {
+  font-size: 12px;
+  margin-left: -4px;
+}
+
+#taskbar button:hover,
+#taskbar button.active,
+#taskbar button.focused,
+#custom-niri-taskbar.focused {
+  opacity: 1;
+}
+
+#taskbar.empty,
+#custom-niri-taskbar.empty {
+  opacity: 0;
+}
+
 #cpu,
 #battery,
 #pulseaudio,

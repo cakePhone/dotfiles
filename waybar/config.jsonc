@@ -5,7 +5,7 @@
   "spacing": 4,
   "height": 1080,
   "width": 26,
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "custom/niri-taskbar"],
   "modules-center": ["custom/screenrecording-indicator", "clock"],
   "modules-right": [
     "group/tray-expander",
@@ -50,6 +50,14 @@
     "on-click": "$HOME/dotfiles/scripts/menu",
     "on-click-right": "xdg-terminal-exec",
     "tooltip-format": "System Menu"
+  },
+  "custom/niri-taskbar": {
+    "exec": "$HOME/dotfiles/scripts/waybar_niri_taskbar.sh --watch",
+    "return-type": "json",
+    "format": "{text}",
+    "markup": true,
+    "escape": false,
+    "tooltip": true
   },
   "custom/update": {
     "format": "",
