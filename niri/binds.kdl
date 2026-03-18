@@ -1,0 +1,59 @@
+binds {
+    Mod+Return { spawn "ghostty"; }
+    Mod+Shift+F { spawn "nautilus"; }
+    Mod+Space { spawn-sh "if pgrep -x wofi > /dev/null; then killall wofi; else wofi --show drun; fi"; }
+    Mod+Shift+M { spawn "spotify"; }
+    Mod+Escape { spawn "wofi-power-menu"; }
+
+    Mod+W { close-window; }
+    Mod+T { toggle-window-floating; }
+    Mod+F { maximize-column; }
+    Mod+Alt+F { fullscreen-window; }
+
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+K { focus-window-up; }
+    Mod+J { focus-window-down; }
+
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+K { move-window-up; }
+    Mod+Shift+J { move-window-down; }
+
+    Alt+Ctrl+H { set-column-width "-5%"; }
+    Alt+Ctrl+L { set-column-width "+5%"; }
+    Alt+Ctrl+K { set-window-height "-5%"; }
+    Alt+Ctrl+J { set-window-height "+5%"; }
+
+    Mod+1 { focus-column 1; }
+    Mod+2 { focus-column 2; }
+    Mod+3 { focus-column 3; }
+    Mod+4 { focus-column 4; }
+    Mod+5 { focus-column 5; }
+    Mod+6 { focus-column 6; }
+    Mod+7 { focus-column 7; }
+    Mod+8 { focus-column 8; }
+    Mod+9 { focus-column 9; }
+    Mod+0 { focus-column 10; }
+
+    Mod+Shift+B { spawn "zen-browser"; }
+    XF86Tools { spawn-sh "~/dotfiles/scripts/toggle_power_mode.sh niri"; }
+    Mod+Shift+Space { spawn-sh "~/.config/scripts/toggle_waybar"; }
+
+    Mod+Print { screenshot-window; }
+    Print { screenshot-screen; }
+    Mod+Shift+Print { screenshot; }
+    Alt+Print { spawn-sh "niri msg pick-color | tr -d '\n' | wl-copy"; }
+    Mod+Alt+R { spawn-sh "~/.config/scripts/record-menu.sh"; }
+    Mod+Z { spawn-sh "playerctl play-pause"; }
+
+    XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioMute allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "swayosd-client" "--brightness" "raise"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "lower"; }
+
+    Mod+bracketleft { consume-or-expel-window-left; }
+    Mod+bracketright { consume-or-expel-window-right; }
+}

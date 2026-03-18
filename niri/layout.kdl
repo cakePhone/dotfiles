@@ -1,0 +1,28 @@
+layout {
+    gaps 0
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+        width 1
+        active-color "#cba6f7"
+        inactive-color "#00000000"
+    }
+
+    shadow {
+        off
+    }
+}
+
+animations {
+    slowdown 1.0
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}

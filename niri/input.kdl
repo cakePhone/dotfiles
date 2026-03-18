@@ -1,0 +1,20 @@
+input {
+    keyboard {
+        xkb {
+            layout "pt"
+            options "caps:compose"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        accel-speed -0.1
+    }
+
+    mouse {
+        accel-speed -1.0
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
