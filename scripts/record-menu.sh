@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# record-menu.sh - Screen recording workflow for Hyprland using Walker and gpu-screen-recorder
+# record-menu.sh - Screen recording workflow for Niri using Walker and gpu-screen-recorder
 
 # Configuration
 RECORDINGS_DIR="$HOME/Videos/Recordings"
@@ -26,7 +26,7 @@ get_filename() {
 # Select a window
 select_window() {
     local windows
-    windows=$(hyprctl clients -j | jq -r '.[] | "\(.address) \(.title)"')
+    windows=$(niri msg --json windows 2>/dev/null | jq -r '.[] | "\((.id // .window_id // .address // empty))\t\((.title // .app_id // .window_title // "Untitled"))"')
     if [ -z "$windows" ]; then
         $NOTIFY_SEND "No Windows" "No windows found"
         return 1
@@ -37,7 +37,7 @@ select_window() {
         return 1
     fi
     # Parse address
-    echo "$choice" | awk '{print $1}'
+    echo "$choice" | awk -F '\t' '{print $1}'
 }
 
 
