@@ -32,12 +32,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export EDITOR="nvim"
 
-# force wayland
-export GDK_BACKEND=wayland
-export QT_QPA_PLATFORM=wayland
-export SDL_VIDEODRIVER=wayland
-export OZONE_PLATFORM=wayland
-
 if [[ ! ($(printenv | grep -c "VSCODE_") -gt 0 || $(printenv | grep -c "NVIM") -gt 0 || $(printenv | grep -c "PYCHARM_JDK") -gt 0 || $(printenv | grep -c "WEBIDE_") -gt 0 || $(printenv | grep -c "INTELLIJ_") -gt 0 || $(printenv | grep -c "CLION_") -gt 0 || $(printenv | grep -c "RIDER_") -gt 0 || $(printenv | grep -c "GOLAND_") -gt 0) ]]; then
   alias clear="clear && fastfetch"
   fastfetch
