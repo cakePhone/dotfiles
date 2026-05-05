@@ -12,8 +12,8 @@ config_root="$HOME/.config"
 # Ensure config root exists
 mkdir -p "$config_root"
 
-# Iterate over directories in dotfiles_root (skip hidden directories and root)
-find "$dotfiles_root" -maxdepth 1 -type d -not -path "$dotfiles_root" -not -name '.*' -print0 | while IFS= read -r -d $'\0' dotfiles_dir; do
+# Iterate over directories in dotfiles_root (skip hidden, root, and systemd — handled by install.sh)
+find "$dotfiles_root" -maxdepth 1 -type d -not -path "$dotfiles_root" -not -name '.*' -not -name 'systemd' -print0 | while IFS= read -r -d $'\0' dotfiles_dir; do
   dir_name=$(basename "$dotfiles_dir")
   config_dir="$config_root/$dir_name"
 

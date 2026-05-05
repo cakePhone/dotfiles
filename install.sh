@@ -1,55 +1,63 @@
 #!/usr/bin/env bash
-
-# Arch installer: installs Niri + theme tooling and Catppuccin themes
-# Assumes a user with sudo privileges and that 'yay' is available (will install if missing).
 set -euo pipefail
 
-echo "[install_arch] Updating system and ensuring build tools..."
+DOTFILES="$HOME/dotfiles"
+
+echo "[setup] Updating system and ensuring build tools..."
 sudo pacman -Syu --needed --noconfirm git base-devel
 
 if ! command -v yay >/dev/null 2>&1; then
-  echo "[install_arch] 'yay' not found; installing yay from AUR helper bootstrap"
+  echo "[setup] Installing yay from AUR..."
   tmpdir=$(mktemp -d)
   git clone https://aur.archlinux.org/yay.git "$tmpdir/yay"
   (cd "$tmpdir/yay" && makepkg -si --noconfirm)
   rm -rf "$tmpdir"
 fi
 
-echo "[install_arch] Installing Niri and utilities (official + AUR where needed)..."
-# core packages (official repos where possible)
-sudo pacman -S --needed --noconfirm niri swaybg swayidle swaylock grim slurp wl-clipboard waybar wlogout swaync fastfetch yazi btop ghostty zsh qt6ct
+echo "[setup] Installing core packages..."
+sudo pacman -S --needed --noconfirm \
+  niri swaybg swayidle swaylock swayosd mako waybar wofi wofi-power-menu \
+  wl-clipboard playerctl brightnessctl polkit-gnome qt6ct pavucontrol \
+  ghostty yazi btop fastfetch \
+  jq upower power-profiles-daemon \
+  git neovim zsh \
+  noto-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-meslo-nerd
 
-# AUR packages via yay (nwg-look and user theme packages)
-yay -S --noconfirm zen-browser-bin nwg-look
+echo "[setup] Installing AUR packages..."
+yay -S --noconfirm --needed \
+  zen-browser-bin \
+  bibata-cursor-theme-bin
 
-echo "[install_arch] Installing Catppuccin GTK theme (AUR or git fallback)..."
-# Try common AUR package names first; if they fail, fall back to cloning upstream repo
-if ! yay -S --noconfirm --needed catppuccin-gtk-theme catppuccin-gtk-theme-git 2>/dev/null; then
-  echo "[install_arch] AUR package not found or install failed, attempting to clone upstream"
-  THEMES_DIR="$HOME/.local/share/themes"
-  mkdir -p "$THEMES_DIR"
-  if [ ! -d "$THEMES_DIR/catppuccin-gtk" ]; then
-    git clone https://github.com/catppuccin/gtk.git "$THEMES_DIR/catppuccin-gtk" || true
-  fi
+echo "[setup] Symlinking dotfiles to ~/.config/..."
+bash "$DOTFILES/install_config_only.sh"
+
+echo "[setup] Deploying systemd user services..."
+mkdir -p "$HOME/.config/systemd/user"
+cp "$DOTFILES"/systemd/user/*.service "$HOME/.config/systemd/user/"
+
+systemctl --user daemon-reload
+
+for unit in swaybg swayidle swayosd polkit-gnome waybar-niri; do
+  systemctl --user add-wants niri.service "$unit.service"
+done
+
+for unit in mako xdg-desktop-portal-gnome; do
+  systemctl --user add-wants niri.service "$unit.service" 2>/dev/null || true
+done
+
+echo "[setup] Applying Qt6 theme settings..."
+mkdir -p "$HOME/.config"
+grep -qxF 'export QT_QPA_PLATFORMTHEME=qt6ct' "$HOME/.config/profile" 2>/dev/null || \
+  echo 'export QT_QPA_PLATFORMTHEME=qt6ct' >> "$HOME/.config/profile"
+
+echo "[setup] Setting up GTK themes (run nwg-look manually)..."
+if command -v nwg-look >/dev/null 2>&1; then
+  echo "  nwg-look is available — open it to apply GTK theme: nwg-look"
 fi
 
-echo "[install_arch] Ensuring Catppuccin variants (mocha, mauve) are available"
-# Many Catppuccin GTK installers expose multiple flavours; if we cloned the repo, make sure the directory exists
-THEMES_DIR="$HOME/.local/share/themes"
-if [ -d "$THEMES_DIR/catppuccin-gtk" ]; then
-  # The repo contains multiple flavours; create simple symlinks for convenience
-  for flavour in mocha mauve; do
-    dest="$THEMES_DIR/Catppuccin-$flavour"
-    if [ ! -e "$dest" ]; then
-      cp -r "$THEMES_DIR/catppuccin-gtk" "$dest" || true
-    fi
-  done
-fi
-
-echo "[install_arch] Configure Qt6 to use qt6ct via environment"
-# Ensure qt6ct will be used by Qt apps
-PROFILE="$HOME/.config/profile"
-mkdir -p "$(dirname "$PROFILE")"
-grep -qxF 'export QT_QPA_PLATFORMTHEME=qt6ct' "$PROFILE" 2>/dev/null || echo 'export QT_QPA_PLATFORMTHEME=qt6ct' >> "$PROFILE"
-
-echo "[install_arch] Done. Run 'nwg-look' to apply GTK/desktop themes and open 'qt6ct' to tune Qt settings."
+echo ""
+echo "Setup complete. Next steps:"
+echo "  1. Place a wallpaper at ~/.config/background"
+echo "  2. Reboot or re-login with niri"
+echo "  3. Run nwg-look to apply GTK theme"
+echo "  4. Run qt6ct to configure Qt theme"
