@@ -13,3 +13,10 @@ window-rule {
     match app-id=r#"^(gamescope)$"#
     open-fullscreen true
 }
+
+window-rule {
+    match app-id=r#"^(org\.gnome\.Calculator)$"#
+    open-floating true
+    default-column-width { fixed 400; }
+    default-window-height { fixed 600; }
+}
