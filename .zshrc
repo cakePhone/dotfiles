@@ -24,6 +24,9 @@ alias pls="sudo"
 
 alias cd="z"
 
+alias npm="bun"
+alias npx="bunx"
+
 # bun completions
 [ -s "/home/oreo/.bun/_bun" ] && source "/home/oreo/.bun/_bun"
 
@@ -32,9 +35,17 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export EDITOR="nvim"
 
-if [[ ! ($(printenv | grep -c "VSCODE_") -gt 0 || $(printenv | grep -c "NVIM") -gt 0 || $(printenv | grep -c "PYCHARM_JDK") -gt 0 || $(printenv | grep -c "WEBIDE_") -gt 0 || $(printenv | grep -c "INTELLIJ_") -gt 0 || $(printenv | grep -c "CLION_") -gt 0 || $(printenv | grep -c "RIDER_") -gt 0 || $(printenv | grep -c "GOLAND_") -gt 0) ]]; then
+should_show_fastfetch() {
+  [[ -z ${parameters[(I)VSCODE_*]} && -z ${parameters[(I)NVIM]} && -z ${parameters[(I)PYCHARM_JDK*]} && -z ${parameters[(I)WEBIDE_*]} && -z ${parameters[(I)INTELLIJ_*]} && -z ${parameters[(I)CLION_*]} && -z ${parameters[(I)RIDER_*]} && -z ${parameters[(I)GOLAND_*]} && -z ${parameters[(I)ZED_*]} && "${TERM_PROGRAM-}" != "zed" ]]
+}
+
+if should_show_fastfetch; then
   alias clear="clear && fastfetch"
   fastfetch
 fi
+
+autoload -Uz compinit && compinit
+
+export MAKEFLAGS="-j$(nproc)"
 
 eval "$(zoxide init zsh)"

@@ -1,0 +1,3 @@
+[wofi]
+path = "wofi"
+extra_args = "--allow-markup --columns=1 --hide-scroll --width=760 --height=560"

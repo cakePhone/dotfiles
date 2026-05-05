@@ -7,13 +7,13 @@ case "$ACTION" in
         hyprctl dispatch exit
         ;;
     Shutdown)
-        systemctl poweroff
+        ~/dotfiles/scripts/powerctl poweroff
         ;;
     Reboot)
-        systemctl reboot
+        ~/dotfiles/scripts/powerctl reboot
         ;;
     Suspend)
-        systemctl suspend
+        ~/dotfiles/scripts/powerctl suspend
         ;;
     Lock)
         hyprlock

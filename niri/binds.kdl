@@ -53,6 +53,9 @@ binds {
     XF86AudioMicMute allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn "swayosd-client" "--brightness" "raise"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "lower"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
 
     Mod+bracketleft { consume-or-expel-window-left; }
     Mod+bracketright { consume-or-expel-window-right; }

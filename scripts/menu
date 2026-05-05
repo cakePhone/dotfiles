@@ -1,8 +1,59 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-TIMEZONE=$(timedatectl list-timezones | wofi --dmenu --prompt "Select Timezone")
+list_timezones() {
+    if command -v timedatectl >/dev/null 2>&1; then
+        timedatectl list-timezones
+        return
+    fi
+
+    if [ -d /usr/share/zoneinfo ]; then
+        (
+            cd /usr/share/zoneinfo
+            find . -type f \
+                ! -path './posix/*' \
+                ! -path './right/*' \
+                ! -name '*.tab' \
+                ! -name 'localtime' \
+                ! -name 'leapseconds' \
+                ! -name 'tzdata.zi' \
+                ! -name 'zone.tab' \
+                ! -name 'zone1970.tab' \
+                ! -name 'iso3166.tab' \
+                -printf '%P\n' | sort -u
+        )
+    fi
+}
+
+run_root() {
+    if command -v run0 >/dev/null 2>&1; then
+        run0 "$@"
+    elif command -v sudo >/dev/null 2>&1; then
+        sudo "$@"
+    elif command -v doas >/dev/null 2>&1; then
+        doas "$@"
+    else
+        return 1
+    fi
+}
+
+set_timezone_fallback() {
+    local tz="$1"
+    [ -e "/usr/share/zoneinfo/$tz" ] || return 1
+
+    run_root ln -snf "/usr/share/zoneinfo/$tz" /etc/localtime
+    run_root sh -c "printf '%s\n' '$tz' > /etc/timezone" || true
+}
+
+TIMEZONE="$(list_timezones | wofi --dmenu --prompt "Select Timezone")"
 
 if [ -n "$TIMEZONE" ]; then
-    timedatectl set-timezone "$TIMEZONE"
-    notify-send "Timezone set to $TIMEZONE"
+    if command -v timedatectl >/dev/null 2>&1 && timedatectl set-timezone "$TIMEZONE" >/dev/null 2>&1; then
+        notify-send "Timezone set to $TIMEZONE"
+    elif set_timezone_fallback "$TIMEZONE"; then
+        notify-send "Timezone set to $TIMEZONE"
+    else
+        notify-send "Timezone" "Failed to set timezone to $TIMEZONE"
+        exit 1
+    fi
 fi

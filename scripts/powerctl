@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+action="${1:-}"
+
+run_first() {
+    while [ "$#" -gt 0 ]; do
+        if eval "$1"; then
+            return 0
+        fi
+        shift
+    done
+    return 1
+}
+
+case "$action" in
+    suspend)
+        run_first \
+            "command -v loginctl >/dev/null 2>&1 && loginctl suspend" \
+            "command -v systemctl >/dev/null 2>&1 && systemctl suspend" \
+            "command -v zzz >/dev/null 2>&1 && zzz"
+        ;;
+    poweroff)
+        run_first \
+            "command -v loginctl >/dev/null 2>&1 && loginctl poweroff" \
+            "command -v systemctl >/dev/null 2>&1 && systemctl poweroff"
+        ;;
+    reboot)
+        run_first \
+            "command -v loginctl >/dev/null 2>&1 && loginctl reboot" \
+            "command -v systemctl >/dev/null 2>&1 && systemctl reboot"
+        ;;
+    lock)
+        run_first \
+            "command -v loginctl >/dev/null 2>&1 && loginctl lock-session" \
+            "command -v hyprlock >/dev/null 2>&1 && hyprlock" \
+            "command -v swaylock >/dev/null 2>&1 && swaylock -f"
+        ;;
+    *)
+        echo "Usage: $0 {suspend|poweroff|reboot|lock}" >&2
+        exit 1
+        ;;
+esac

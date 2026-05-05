@@ -7,33 +7,6 @@ import shutil
 import time
 
 
-APP_ICONS = {
-    "org.mozilla.firefox": "",
-    "firefox": "",
-    "zen": "",
-    "org.chromium.chromium": "",
-    "chromium": "",
-    "google-chrome": "",
-    "org.gnome.nautilus": "",
-    "nautilus": "",
-    "org.kde.dolphin": "",
-    "com.mitchellh.ghostty": "",
-    "vesktop": "",
-    "discord": "",
-    "element": "󰘨",
-    "org.telegram.desktop": "",
-    "signal": "󰭹",
-    "spotify": "",
-    "alacritty": "",
-    "foot": "",
-    "kitty": "",
-    "org.wezfurlong.wezterm": "",
-    "code": "󰨞",
-    "codium": "󰨞",
-    "steam": "",
-}
-
-
 def read_json(command):
     try:
         out = subprocess.check_output(command, stderr=subprocess.DEVNULL, text=True)
@@ -102,31 +75,6 @@ def normalize_sort(win, idx):
     )
 
 
-def icon_for(app_id):
-    if not app_id:
-        return "󰣆"
-
-    lowered = str(app_id).lower().strip()
-
-    # Exact app_id match first.
-    if lowered in APP_ICONS:
-        return APP_ICONS[lowered]
-
-    # Try progressively shorter dotted segments, e.g. com.foo.Bar -> bar.
-    parts = [p for p in lowered.replace("-", ".").replace("_", ".").split(".") if p]
-    for i in range(len(parts)):
-        candidate = ".".join(parts[i:])
-        if candidate in APP_ICONS:
-            return APP_ICONS[candidate]
-
-    # Fallback: substring matching for odd app IDs.
-    for key, icon in APP_ICONS.items():
-        if key in lowered:
-            return icon
-
-    return "󰣆"
-
-
 def build_payload():
     if shutil.which("niri") is None:
         return {"text": "?", "class": "error", "tooltip": "niri not found in PATH"}
@@ -156,21 +104,18 @@ def build_payload():
     if not normalized:
         return {"text": "·", "class": "empty", "tooltip": "No windows"}
 
-    focused_workspace = focused_window["workspace_id"] if focused_window else None
-
-    def priority(item):
-        return 0 if focused_workspace is not None and item["workspace_id"] == focused_workspace else 1
-
-    normalized.sort(key=lambda item: (priority(item), item["sort_key"]))
+    # Keep taskbar order stable: workspace -> column -> row.
+    # Don't re-prioritize focused workspace, which causes renumbering jumps.
+    normalized.sort(key=lambda item: item["sort_key"])
 
     text_parts = []
     tooltip_parts = []
     for i, item in enumerate(normalized, start=1):
-        icon = icon_for(item["app_id"])
+        label = str(i)
         if item["focused"]:
-            text_parts.append(icon)
+            text_parts.append(label)
         else:
-            text_parts.append("<span alpha='50%%'>%s</span>" % icon)
+            text_parts.append("<span alpha='50%%'>%s</span>" % label)
         tooltip_parts.append(f"{i}. {item['title']}")
 
     return {

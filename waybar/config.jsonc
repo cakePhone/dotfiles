@@ -112,7 +112,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "$HOME/dotfiles/scripts/launch-floating-centered ghostty -e nmtui"
+    "on-click": "$HOME/dotfiles/scripts/network-menu"
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -140,7 +140,7 @@
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueman-manager"
+    "on-click": "ghostty -e bluetui"
   },
   "pulseaudio": {
     "format": "{icon}",

@@ -55,7 +55,11 @@ grep -qxF 'export QT_QPA_PLATFORMTHEME=qt6ct' "$PROFILE" 2>/dev/null || echo 'ex
 echo "[install_arch] Installing spotifyd and spotatui (AUR)..."
 yay -S --noconfirm spotifyd spotatui
 
-echo "[install_arch] Enabling spotifyd systemd user service..."
-systemctl --user enable --now spotifyd
+if command -v systemctl >/dev/null 2>&1; then
+  echo "[install_arch] Enabling spotifyd systemd user service..."
+  systemctl --user enable --now spotifyd || true
+else
+  echo "[install_arch] systemd user manager not detected; skipping spotifyd service enable"
+fi
 
 echo "[install_arch] Done. Run 'nwg-look' to apply GTK/desktop themes and open 'qt6ct' to tune Qt settings."

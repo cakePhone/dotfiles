@@ -7,8 +7,6 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     NVD_BACKEND "direct"
     SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/keyring/ssh"
-    GTK_IM_MODULE "ibus"
-    QT_IM_MODULE "ibus"
+    GTK_IM_MODULE "simple"
     XMODIFIERS "@im=ibus"
-    SDL_IM_MODULE "ibus"
 }

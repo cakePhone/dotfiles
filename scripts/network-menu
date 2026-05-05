@@ -1,0 +1,70 @@
+#!/bin/bash
+
+set -euo pipefail
+
+WOFI_CMD=(wofi --dmenu --prompt "Network")
+
+wifi_state="$(nmcli radio wifi)"
+network_state="$(nmcli networking)"
+active_wifi="$(nmcli -t -f NAME,TYPE connection show --active | awk -F: '$2 == "802-11-wireless" { print $1; exit }')"
+
+if [[ "$wifi_state" == "enabled" ]]; then
+  wifi_toggle="Turn Wi-Fi off"
+else
+  wifi_toggle="Turn Wi-Fi on"
+fi
+
+if [[ "$network_state" == "enabled" ]]; then
+  network_toggle="Turn networking off"
+else
+  network_toggle="Turn networking on"
+fi
+
+menu_entries=(
+  "$wifi_toggle"
+  "$network_toggle"
+  "Open nmtui"
+)
+
+if [[ -n "$active_wifi" ]]; then
+  menu_entries+=("Disconnect: $active_wifi")
+fi
+
+if [[ "$wifi_state" == "enabled" ]]; then
+  while IFS= read -r ssid; do
+    [[ -z "$ssid" ]] && continue
+    menu_entries+=("Connect: $ssid")
+  done < <(nmcli -t -f SSID device wifi list --rescan auto | awk '!seen[$0]++')
+fi
+
+choice="$(printf '%s\n' "${menu_entries[@]}" | "${WOFI_CMD[@]}")"
+[[ -z "$choice" ]] && exit 0
+
+case "$choice" in
+  "Turn Wi-Fi on")
+    nmcli radio wifi on
+    ;;
+  "Turn Wi-Fi off")
+    nmcli radio wifi off
+    ;;
+  "Turn networking on")
+    nmcli networking on
+    ;;
+  "Turn networking off")
+    nmcli networking off
+    ;;
+  "Open nmtui")
+    "$HOME/dotfiles/scripts/launch-floating-centered" ghostty -e nmtui
+    ;;
+  Disconnect:*)
+    conn_name="${choice#Disconnect: }"
+    nmcli connection down "$conn_name"
+    ;;
+  Connect:*)
+    ssid="${choice#Connect: }"
+    if ! nmcli --wait 10 device wifi connect "$ssid"; then
+      notify-send "Network" "Could not connect to '$ssid' from menu. Opening nmtui."
+      "$HOME/dotfiles/scripts/launch-floating-centered" ghostty -e nmtui
+    fi
+    ;;
+esac

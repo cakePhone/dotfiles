@@ -6,14 +6,13 @@
 }
 {
   "label": "reboot",
-  "action": "systemctl reboot",
+  "action": "~/dotfiles/scripts/powerctl reboot",
   "text": "Reboot",
   "keybind": "r"
 }
 {
   "label": "shutdown",
-  "action": "systemctl poweroff",
+  "action": "~/dotfiles/scripts/powerctl poweroff",
   "text": "Shutdown",
   "keybind": "s"
 }
-

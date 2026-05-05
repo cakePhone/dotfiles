@@ -51,6 +51,7 @@ window#waybar {
 #custom-niri-taskbar {
   font-size: 12px;
   margin-left: -4px;
+  letter-spacing: 0;
 }
 
 #taskbar button:hover,
