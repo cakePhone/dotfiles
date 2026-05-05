@@ -9,7 +9,7 @@ layout {
         on
         width 1
         active-color "#cba6f7"
-        inactive-color "#00000000"
+        inactive-color "#1e1e2e"
     }
 
     shadow {

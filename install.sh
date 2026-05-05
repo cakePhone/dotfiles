@@ -16,7 +16,7 @@ fi
 
 echo "[setup] Installing core packages..."
 sudo pacman -S --needed --noconfirm \
-  niri swaybg swayidle swaylock swayosd mako waybar wofi wofi-power-menu \
+  niri swaybg swayidle swaylock swayosd swaync waybar wofi wofi-power-menu \
   wl-clipboard playerctl brightnessctl polkit-gnome qt6ct pavucontrol \
   ghostty yazi btop fastfetch \
   jq upower power-profiles-daemon \
@@ -41,7 +41,7 @@ for unit in swaybg swayidle swayosd polkit-gnome waybar-niri; do
   systemctl --user add-wants niri.service "$unit.service"
 done
 
-for unit in mako xdg-desktop-portal-gnome; do
+for unit in swaync xdg-desktop-portal-gnome; do
   systemctl --user add-wants niri.service "$unit.service" 2>/dev/null || true
 done
 

@@ -1,0 +1,30 @@
+{
+  "position": "bottom-left",
+  "notification-window-width": 400,
+  "control-center-position": "bottom-left",
+  "control-center-margin-top": 0,
+  "control-center-margin-bottom": 0,
+  "control-center-margin-left": 0,
+  "control-center-margin-right": 0,
+  "notification-hover-timeout": 5000,
+  "notification-timeout": 5000,
+  "hide-on-clear": true,
+  "scripts": {
+    "example-script": {
+      "exec": "echo 'do something'",
+      "urgency": "Normal"
+    }
+  },
+  "widgets": [
+    "inhibitors",
+    "title",
+    "dnd",
+    "notifications"
+  ],
+  "notification-icon-size": 24,
+  "notification-body-image-height": 100,
+  "notification-body-image-width": 200,
+  "timeout": 5,
+  "timeout-low": 3,
+  "timeout-critical": 0
+}

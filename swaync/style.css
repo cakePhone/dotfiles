@@ -1,0 +1,163 @@
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+}
+
+.control-center {
+  background: #1e1e2e;
+  border: 1px solid #cba6f7;
+  border-radius: 0;
+}
+
+.control-center .title {
+  color: #cdd6f4;
+  padding: 10px;
+}
+
+.control-center .dnd {
+  color: #cdd6f4;
+  margin: 10px;
+}
+
+.control-center .dnd.is-muted {
+  color: #f38ba8;
+}
+
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification {
+  background: #1e1e2e;
+  border: 1px solid #313244;
+  border-radius: 0;
+  margin: 4px 8px;
+  padding: 0;
+}
+
+.notification-content {
+  background: transparent;
+  padding: 10px;
+}
+
+.notification-default-action {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.notification-default-action:hover {
+  background: #313244;
+}
+
+.notification-action {
+  background: transparent;
+  border: 1px solid #313244;
+  border-radius: 0;
+  color: #cdd6f4;
+  margin: 2px;
+  padding: 4px 8px;
+}
+
+.notification-action:hover {
+  background: #313244;
+}
+
+.close-button {
+  background: #313244;
+  color: #cdd6f4;
+  border: none;
+  border-radius: 0;
+  margin: 4px;
+  padding: 2px 6px;
+}
+
+.close-button:hover {
+  background: #f38ba8;
+  color: #1e1e2e;
+}
+
+.notification-default-action {
+  background: transparent;
+  border: none;
+}
+
+.notification-default-action:hover {
+  background: #313244;
+}
+
+.summary {
+  color: #cba6f7;
+}
+
+.body {
+  color: #cdd6f4;
+}
+
+.image {
+  margin: 0 8px 0 0;
+}
+
+.widget-title {
+  color: #cdd6f4;
+  margin: 10px;
+}
+
+.widget-title button {
+  background: #313244;
+  border: none;
+  border-radius: 0;
+  color: #cdd6f4;
+  padding: 4px 8px;
+}
+
+.widget-title button:hover {
+  background: #45475a;
+}
+
+.widget-dnd {
+  color: #cdd6f4;
+  margin: 10px;
+}
+
+.widget-dnd > switch {
+  background: #313244;
+  border-radius: 0;
+}
+
+.widget-dnd > switch:checked {
+  background: #cba6f7;
+}
+
+.widget-label {
+  color: #cdd6f4;
+  margin: 10px;
+}
+
+.widget-buttons-grid > button {
+  background: #313244;
+  border: none;
+  border-radius: 0;
+  color: #cdd6f4;
+  margin: 4px;
+  padding: 8px;
+}
+
+.widget-buttons-grid > button:hover {
+  background: #45475a;
+}
+
+.widget-buttons-grid > button:checked {
+  background: #cba6f7;
+  color: #1e1e2e;
+}
+
+.notification.narrow {
+  border: 1px solid #313244;
+}
+
+.notification.narrow .notification-default-action {
+  border-radius: 0;
+}

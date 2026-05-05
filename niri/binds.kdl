@@ -46,6 +46,7 @@ binds {
     Alt+Print { spawn-sh "niri msg pick-color | tr -d '\n' | wl-copy"; }
     Mod+Alt+R { spawn-sh "~/.config/scripts/record-menu.sh"; }
     Mod+Z { spawn-sh "playerctl play-pause"; }
+    Mod+Shift+N { spawn "swaync-client" "-t"; }
 
     XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
     XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
