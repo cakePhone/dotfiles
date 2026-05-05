@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # record-menu.sh - Screen recording workflow for Niri using Walker and gpu-screen-recorder
 

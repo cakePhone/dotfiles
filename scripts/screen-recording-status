@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if ! pgrep -x wf-recorder > /dev/null; then
     echo '{"text": "", "tooltip": "", "class": ""}'

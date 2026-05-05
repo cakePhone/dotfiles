@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Power management script for maximum battery life
 # Runs as regular user. Uses sudo tee for privileged sysfs writes.
 

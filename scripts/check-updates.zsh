@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 function get_update_status() {
     local update_count=0

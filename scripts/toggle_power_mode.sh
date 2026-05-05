@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 WM_TARGET="${1:-auto}"
 

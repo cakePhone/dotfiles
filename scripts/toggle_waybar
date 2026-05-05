@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if pgrep -x "waybar" > /dev/null; then
   killall waybar

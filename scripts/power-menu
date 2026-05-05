@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 ACTION=$(echo -e "Logout\nShutdown\nReboot\nSuspend\nLock" | wofi --dmenu --prompt "Power")
 
