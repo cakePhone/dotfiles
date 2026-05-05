@@ -4,7 +4,7 @@ ACTION=$(echo -e "Logout\nShutdown\nReboot\nSuspend\nLock" | wofi --dmenu --prom
 
 case "$ACTION" in
     Logout)
-        hyprctl dispatch exit
+        niri msg action quit
         ;;
     Shutdown)
         ~/dotfiles/scripts/powerctl poweroff
@@ -16,6 +16,6 @@ case "$ACTION" in
         ~/dotfiles/scripts/powerctl suspend
         ;;
     Lock)
-        hyprlock
+        swaylock -f
         ;;
 esac
