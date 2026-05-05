@@ -21,7 +21,7 @@ sudo pacman -S --needed --noconfirm \
   ghostty yazi btop fastfetch \
   jq upower power-profiles-daemon \
   git neovim zsh \
-  noto-fonts noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-meslo-nerd
+  noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-meslo-nerd
 
 echo "[setup] Installing AUR packages..."
 yay -S --noconfirm --needed \
