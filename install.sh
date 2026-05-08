@@ -37,7 +37,7 @@ cp "$DOTFILES"/systemd/user/*.service "$HOME/.config/systemd/user/"
 
 systemctl --user daemon-reload
 
-for unit in swaybg swayidle swayosd polkit-gnome waybar-niri; do
+for unit in swaybg swayidle swayosd polkit-gnome waybar; do
   systemctl --user add-wants niri.service "$unit.service"
 done
 
