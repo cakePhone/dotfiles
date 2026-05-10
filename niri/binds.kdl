@@ -38,7 +38,7 @@ binds {
 
     Mod+Shift+B { spawn "zen-browser"; }
     XF86Tools { spawn-sh "~/dotfiles/scripts/toggle_power_mode.sh niri"; }
-    Mod+Shift+Space { spawn-sh "~/.config/scripts/toggle_waybar"; }
+    Mod+Shift+Space { spawn-sh "if systemctl --user is-active ags.service > /dev/null 2>&1; then systemctl --user stop ags.service; else systemctl --user start ags.service; fi"; }
 
     Mod+Print { screenshot-window; }
     Print { screenshot-screen; }

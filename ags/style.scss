@@ -1,0 +1,86 @@
+$fg-color: #{"@theme_fg_color"};
+$bg-color: #{"@theme_bg_color"};
+
+window.Bar {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+  min-width: 26px;
+
+  box.modules-left {
+    margin-top: 0;
+  }
+
+  box.modules-right {
+    margin-bottom: 0;
+  }
+
+  button {
+    all: initial;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    color: #cdd6f4;
+  }
+
+  button.taskbar-button {
+    padding: 5px 0;
+    margin: 1.5px 0;
+    min-height: 12px;
+    color: #cdd6f4;
+    opacity: 0.7;
+    font-size: 12px;
+  }
+
+  button.taskbar-button.focused {
+    opacity: 1;
+  }
+
+  button.module {
+    min-height: 12px;
+    margin: 7.5px 0;
+    font-size: 12px;
+  }
+
+  button.module.clock {
+    margin-top: 8.75px;
+  }
+
+  button.module.recording {
+    min-height: 12px;
+    margin-top: 5px;
+    font-size: 10px;
+    padding-bottom: 1px;
+  }
+
+  button.module.recording.active label {
+    color: #a55555;
+  }
+
+  menubutton.module.tray {
+    margin-bottom: 16px;
+    margin-left: 4px;
+  }
+
+  button.module.bluetooth {
+    margin-bottom: 17px;
+    margin-left: 1px;
+  }
+
+  button.module.network {
+    margin-bottom: 13px;
+  }
+
+  tooltip {
+    padding: 2px;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border: 1px solid #313244;
+    border-radius: 4px;
+  }
+}

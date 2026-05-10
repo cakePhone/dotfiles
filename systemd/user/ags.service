@@ -1,11 +1,11 @@
 [Unit]
-Description=Swaync notification daemon
+Description=Aylur's GTK Shell (AGS) Bar for niri
 PartOf=graphical-session.target
 After=graphical-session.target
 Requisite=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/swaync
+ExecStart=%h/.local/bin/ags-bar
 Restart=on-failure
 
 [Install]
