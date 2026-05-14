@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-DOTFILES="$HOME/dotfiles"
+DOTFILES="${DOTFILES_ROOT:-$HOME/dotfiles}"
 
 echo "[setup] Updating system and ensuring build tools..."
 sudo pacman -Syu --needed --noconfirm git base-devel
@@ -31,10 +31,14 @@ yay -S --noconfirm --needed \
 echo "[setup] Symlinking dotfiles to ~/.config/..."
 bash "$DOTFILES/install_config_only.sh"
 
+echo "[setup] Symlinking .zprofile..."
+rm -f "$HOME/.zprofile"
+ln -s "$DOTFILES/.zprofile" "$HOME/.zprofile"
+
 echo "[setup] Deploying systemd user services..."
 mkdir -p "$HOME/.config/systemd/user"
 cp "$DOTFILES"/systemd/user/*.service "$HOME/.config/systemd/user/"
-
+cp -r "$DOTFILES"/systemd/user/niri.service.d "$HOME/.config/systemd/user/" 2>/dev/null || true
 systemctl --user daemon-reload
 
 echo "[setup] Building AGS bar..."
@@ -53,14 +57,14 @@ mkdir -p "$HOME/.config"
 grep -qxF 'export QT_QPA_PLATFORMTHEME=qt6ct' "$HOME/.config/profile" 2>/dev/null || \
   echo 'export QT_QPA_PLATFORMTHEME=qt6ct' >> "$HOME/.config/profile"
 
-echo "[setup] Setting up GTK themes (run nwg-look manually)..."
-if command -v nwg-look >/dev/null 2>&1; then
-  echo "  nwg-look is available — open it to apply GTK theme: nwg-look"
-fi
+echo "[setup] Deploying silent autologin getty drop-in..."
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+sudo cp "$DOTFILES/systemd/system/getty@tty1.service.d/autologin.conf" /etc/systemd/system/getty@tty1.service.d/
+sudo sed -i "s/--autologin oreo/--autologin $USER/" /etc/systemd/system/getty@tty1.service.d/autologin.conf
+sudo systemctl daemon-reload
 
 echo ""
 echo "Setup complete. Next steps:"
 echo "  1. Place a wallpaper at ~/.config/background"
-echo "  2. Reboot or re-login with niri"
-echo "  3. Run nwg-look to apply GTK theme"
-echo "  4. Run qt6ct to configure Qt theme"
+echo "  2. Add 'vt.global_cursor_default=0 consoleblank=0' to your kernel cmdline"
+echo "  3. Reboot"
