@@ -1,0 +1,14 @@
+[Unit]
+Description=Sort Downloads by file type into XDG dirs
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/scripts/sort-downloads.sh
+LockPersonality=yes
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=graphical-session.target

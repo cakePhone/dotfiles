@@ -38,6 +38,7 @@ ln -s "$DOTFILES/.zprofile" "$HOME/.zprofile"
 echo "[setup] Deploying systemd user services..."
 mkdir -p "$HOME/.config/systemd/user"
 cp "$DOTFILES"/systemd/user/*.service "$HOME/.config/systemd/user/"
+cp "$DOTFILES"/systemd/user/*.path "$HOME/.config/systemd/user/"
 cp -r "$DOTFILES"/systemd/user/niri.service.d "$HOME/.config/systemd/user/" 2>/dev/null || true
 systemctl --user daemon-reload
 

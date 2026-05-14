@@ -1,0 +1,12 @@
+[Unit]
+Description=Watch Downloads for new files to sort into XDG dirs
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Path]
+PathChanged=%h/Downloads
+Unit=sort-downloads.service
+
+[Install]
+WantedBy=graphical-session.target
