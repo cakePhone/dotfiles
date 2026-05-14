@@ -20,7 +20,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       </box>
       <box hexpand vexpand />
       <box orientation={Gtk.Orientation.VERTICAL} class="modules-right" valign={Gtk.Align.END} halign={Gtk.Align.CENTER}>
-        <Tray />
+        <Tray gdkmonitor={gdkmonitor} />
         <Bluetooth />
         <Network />
         <Audio />

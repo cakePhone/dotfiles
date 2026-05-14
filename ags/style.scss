@@ -1,9 +1,16 @@
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+$fg: #{"@theme_fg_color"};
+$bg: #{"@theme_bg_color"};
+$borders: #{"@borders"};
+$selected-bg: #{"@theme_selected_bg_color"};
+$base: #{"@theme_base_color"};
+
+* {
+  border-radius: 0;
+}
 
 window.Bar {
-  background: #1e1e2e;
-  color: #cdd6f4;
+  background: $bg;
+  color: $fg;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 12px;
   min-width: 32px;
@@ -25,14 +32,14 @@ window.Bar {
     min-width: 0;
     padding: 0;
     margin: 0;
-    color: #cdd6f4;
+    color: $fg;
   }
 
   button.taskbar-button {
     padding: 4px 0;
     margin: 0;
     min-height: 12px;
-    color: #cdd6f4;
+    color: $fg;
     opacity: 0.7;
     font-size: 12px;
   }
@@ -45,6 +52,30 @@ window.Bar {
     min-height: 12px;
     margin: 8px 0;
     font-size: 12px;
+  }
+
+  .tray-button {
+    all: unset;
+    min-height: 24px;
+    min-width: 24px;
+    padding: 4px;
+    margin: 8px 0;
+    background: transparent;
+    color: $fg;
+    transition: all 150ms ease;
+
+    image {
+      -gtk-icon-size: 16px;
+      transition: all 150ms ease;
+    }
+
+    &:hover {
+      background: #{"alpha(@theme_selected_bg_color, 0.15)"};
+    }
+
+    &:active {
+      background: #{"alpha(@theme_selected_bg_color, 0.25)"};
+    }
   }
 
   .module.clock {
@@ -64,9 +95,131 @@ window.Bar {
 
   tooltip {
     padding: 2px;
-    background: #1e1e2e;
-    color: #cdd6f4;
-    border: 1px solid #313244;
-    border-radius: 4px;
+    background: $bg;
+    color: $fg;
+    border: 1px solid $borders;
+  }
+
+  popover {
+    background: transparent;
+    color: $fg;
+    border: none;
+    padding: 0;
+
+    > * {
+      background: transparent;
+      border: transparent;
+      outline: none;
+    }
+
+    :selected {
+      background: #{"alpha(@theme_selected_bg_color, 0.15)"};
+    }
+
+    button,
+    menubutton,
+    .menu-item {
+      all: unset;
+      padding: 6px 12px;
+      color: $fg;
+      min-height: 24px;
+      transition: all 100ms ease;
+      font-size: 12px;
+
+      &:hover {
+        background: #{"alpha(@theme_selected_bg_color, 0.15)"};
+        color: $fg;
+      }
+
+      &:active {
+        background: #{"alpha(@theme_selected_bg_color, 0.25)"};
+      }
+
+      label {
+        color: inherit;
+      }
+
+      image {
+        -gtk-icon-size: 16px;
+      }
+
+      arrow {
+        color: #{"alpha(@theme_fg_color, 0.6)"};
+        -gtk-icon-size: 12px;
+        min-width: 12px;
+        min-height: 12px;
+      }
+    }
+
+    separator {
+      background: #{"alpha(@theme_fg_color, 0.1)"};
+      min-height: 1px;
+      margin: 4px 8px;
+    }
+  }
+}
+
+popover.tray-popup {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  outline: none;
+
+  arrow {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  > contents {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .tray-popup-box {
+    background: $base;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top: $selected-bg solid 1px;
+    border-right: $selected-bg solid 1px;
+    border-bottom: $selected-bg solid 1px;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+
+    .tray-item {
+      all: unset;
+      padding: 0;
+      margin: 0;
+      min-height: 0;
+      border-radius: 0;
+      background: transparent;
+
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+
+      > * {
+        padding: 6px;
+        margin: 0;
+        border-radius: 12px;
+
+        * {
+          all: unset;
+        }
+
+        box {
+          all: unset;
+          background: $base;
+          box-shadow: none;
+        }
+      }
+    }
   }
 }
