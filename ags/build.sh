@@ -8,3 +8,6 @@ mkdir -p "$(dirname "$OUTPUT")"
 ags bundle "$SCRIPT_DIR/app.tsx" "$OUTPUT"
 chmod +x "$OUTPUT"
 echo "bundled to $OUTPUT"
+
+systemctl --user restart ags.service
+echo "restarted ags-bar.service"
