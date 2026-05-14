@@ -1,6 +1,5 @@
 import { createPoll } from "ags/time"
 import { execAsync } from "ags/process"
-import { Icons } from "../icons"
 
 export default function RecordingIndicator() {
   const recording = createPoll("idle", 2000,
@@ -12,7 +11,7 @@ export default function RecordingIndicator() {
       class="module recording"
       onClicked={() => execAsync("bash ~/dotfiles/scripts/toggle-screenrecord")}
     >
-      <label label={recording((r: string) => (r === "active" ? Icons.recording : ""))} />
+      <image icon-name={recording((r: string) => (r === "active" ? "media-record-symbolic" : ""))} />
     </button>
   )
 }

@@ -15,11 +15,11 @@ const { TOP, LEFT, BOTTOM } = Astal.WindowAnchor
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   const mainBox = (
     <box orientation={Gtk.Orientation.VERTICAL}>
-      <box orientation={Gtk.Orientation.VERTICAL} class="modules-left" valign={Gtk.Align.START}>
+      <box orientation={Gtk.Orientation.VERTICAL} class="modules-left" valign={Gtk.Align.START} halign={Gtk.Align.CENTER}>
         <NiriTaskbar />
       </box>
       <box hexpand vexpand />
-      <box orientation={Gtk.Orientation.VERTICAL} class="modules-right" valign={Gtk.Align.END}>
+      <box orientation={Gtk.Orientation.VERTICAL} class="modules-right" valign={Gtk.Align.END} halign={Gtk.Align.CENTER}>
         <Tray />
         <Bluetooth />
         <Network />
@@ -31,7 +31,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
   )
 
   const clockBox = (
-    <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.START}>
+    <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
       <Clock />
       <RecordingIndicator />
     </box>
@@ -50,7 +50,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | BOTTOM}
       application={app}
-      width-request={26}
+      width-request={32}
     >
       {overlay}
     </window>

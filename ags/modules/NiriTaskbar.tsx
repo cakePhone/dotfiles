@@ -1,28 +1,8 @@
-import { Gtk, Gdk } from "ags/gtk4"
+import GLib from "gi://GLib"
+import { Gtk } from "ags/gtk4"
 import { execAsync, subprocess } from "ags/process"
 import { createState, For, onCleanup } from "ags"
-
-let theme: any = null
-
-function iconName(appId: string | null): string | null {
-  if (!appId) return null
-  try {
-    if (!theme) theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
-    const names = [
-      appId,
-      appId.toLowerCase(),
-      ...appId.split(".").reverse(),
-      appId.split(".").pop(),
-      (appId.split(".").pop() || "").toLowerCase(),
-    ]
-    for (const name of names) {
-      if (name && theme.has_icon(name)) return name
-    }
-    return null
-  } catch {
-    return null
-  }
-}
+import { getAppIconName } from "./AppIcons"
 
 function appLabel(appId: string | null, title: string | null): string {
   const id = appId || title || "?"
@@ -61,29 +41,39 @@ export default function NiriTaskbar() {
 
   fetchWindows()
 
-  const stream = subprocess(
-    ["niri", "msg", "--json", "event-stream"],
-    () => fetchWindows(),
+  const stream = subprocess(["niri", "msg", "--json", "event-stream"], () =>
+    fetchWindows(),
   )
-  onCleanup(() => { try { stream.kill() } catch {} })
+  onCleanup(() => {
+    try {
+      stream.kill()
+    } catch {}
+  })
 
   return (
-    <box orientation={Gtk.Orientation.VERTICAL}>
+    <box class="taskbar" orientation={Gtk.Orientation.VERTICAL}>
       <For each={windows}>
         {(win: any, index: any) => {
           const i = index()
-          const icon = iconName(win.app_id)
+          const icon = getAppIconName(win.app_id)
 
           return (
             <button
-              class={["taskbar-button", win.is_focused ? "focused" : ""].filter(Boolean).join(" ")}
+              class={["taskbar-button", win.is_focused ? "focused" : ""]
+                .filter(Boolean)
+                .join(" ")}
               tooltip-text={win.title || win.app_id || "Window"}
-              onClicked={() => execAsync(`niri msg action focus-window ${win.id}`)}
-            >
-              {icon
-                ? <image icon-name={icon} pixel-size={12} />
-                : <label label={appLabel(win.app_id, win.title)} />
+              onClicked={() =>
+                GLib.spawn_command_line_async(
+                  `niri msg action focus-window --id ${win.id}`,
+                )
               }
+            >
+              {icon ? (
+                <image icon-name={icon} pixel-size={18} />
+              ) : (
+                <label label={appLabel(win.app_id, win.title)} />
+              )}
             </button>
           )
         }}

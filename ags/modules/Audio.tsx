@@ -1,24 +1,31 @@
-import Wp from "gi://AstalWp"
+import AstalWp from "gi://AstalWp"
 import { createBinding } from "ags"
-import { Icons } from "../icons"
+import { Gtk } from "ags/gtk4"
 
-const iconMap: Record<string, string> = {
-  "audio-volume-muted-symbolic": Icons.volumeMute,
-  "audio-volume-low-symbolic": Icons.volumeLow,
-  "audio-volume-medium-symbolic": Icons.volumeMedium,
-  "audio-volume-high-symbolic": Icons.volumeHigh,
-  "audio-headphones-symbolic": Icons.headphone,
-  "audio-headset-symbolic": Icons.headphone,
-}
-
-export default function AudioModule() {
-  const speaker = Wp.get_default().get_default_speaker()
+export default function Audio() {
+  const speaker = AstalWp.Wp.get_default().defaultSpeaker
+  const volume = createBinding(speaker, "volume")
+  const volumeIcon = createBinding(speaker, "volume_icon")
 
   return (
-    <button class="module audio" onClicked={() => speaker.set_mute(!speaker.mute)}>
-      <label
-        label={createBinding(speaker, "volume-icon")((icon: string) => iconMap[icon] || Icons.volumeHigh)}
+    <menubutton class="module audio" direction={Gtk.ArrowType.RIGHT}>
+      <image
+        icon-name={volumeIcon((icon: string) => `${icon}-symbolic`)}
+        tooltip-text={volume(
+          (vol: number) => `Volume ${Math.floor(vol * 100)}%`,
+        )}
       />
-    </button>
+      <popover>
+        <box orientation={Gtk.Orientation.VERTICAL} spacing={8}>
+          <slider
+            orientation={Gtk.Orientation.VERTICAL}
+            inverted
+            height-request={200}
+            value={volume}
+            onValueChanged={(self) => { speaker.volume = self.value }}
+          />
+        </box>
+      </popover>
+    </menubutton>
   )
 }

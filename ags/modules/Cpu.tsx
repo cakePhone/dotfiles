@@ -1,7 +1,6 @@
 import { createPoll } from "ags/time"
 import { execAsync } from "ags/process"
 import GLib from "gi://GLib"
-import { Icons } from "../icons"
 
 let prevTotal = 0
 let prevIdle = 0
@@ -43,7 +42,7 @@ export default function CpuModule() {
       class="module cpu"
       onClicked={() => execAsync("ghostty -e btop")}
     >
-      <label label={Icons.cpu} tooltip-text={usage} />
+      <image icon-name="computer-symbolic" tooltip-text={usage} />
     </button>
   )
 }

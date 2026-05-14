@@ -1,13 +1,12 @@
 import Mpris from "gi://AstalMpris"
 import { createBinding, For } from "ags"
-import { Icons } from "../icons"
 
 const playerIcons: Record<string, string> = {
-  default: Icons.music,
-  spotify: Icons.spotify,
-  firefox: Icons.firefox,
-  chrome: Icons.chrome,
-  vlc: Icons.vlc,
+  default: "audio-x-generic-symbolic",
+  spotify: "emblem-music-symbolic",
+  firefox: "emblem-music-symbolic",
+  chrome: "emblem-music-symbolic",
+  vlc: "emblem-music-symbolic",
 }
 
 export default function Media() {
@@ -31,12 +30,10 @@ export default function Media() {
 
         return (
           <button class="module" onClicked={() => player.play_pause()}>
-            <label
-              label={status((s: number) => {
-                const p = s === 1 ? Icons.paused : ico
-                return `${p} ${title()} - ${artist()}`
-              })}
-            />
+            <box>
+              <image icon-name={status((s: number) => s === 1 ? "media-playback-pause-symbolic" : ico)} />
+              <label label={status(() => ` ${title()} - ${artist()}`)} />
+            </box>
           </button>
         )
       }}

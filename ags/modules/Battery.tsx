@@ -1,14 +1,13 @@
 import Battery from "gi://AstalBattery"
 import { createBinding } from "ags"
 import { execAsync } from "ags/process"
-import { Icons } from "../icons"
 
-const levels = [
-  Icons.batteryEmpty,
-  Icons.batteryQuarter,
-  Icons.batteryHalf,
-  Icons.batteryThreeQuarters,
-  Icons.batteryFull,
+const themeLevels = [
+  "battery-empty-symbolic",
+  "battery-quarter-symbolic",
+  "battery-half-symbolic",
+  "battery-three-quarters-symbolic",
+  "battery-full-symbolic",
 ]
 
 const stateLabel: Record<number, string> = {
@@ -26,8 +25,8 @@ export default function BatteryModule() {
       class="module battery"
       onClicked={() => execAsync("bash ~/dotfiles/scripts/toggle_power_mode.sh niri")}
     >
-      <label
-        label={percentage((pct: number) => levels[Math.min(Math.max(Math.floor(pct * 100 / 20), 0), 4)])}
+      <image
+        icon-name={percentage((pct: number) => themeLevels[Math.min(Math.max(Math.floor(pct * 100 / 20), 0), 4)])}
         tooltip-text={percentage((pct: number) => {
           const s = stateLabel[bat.state] || ""
           return `${Math.round(pct * 100)}% ${s}`.trim()
